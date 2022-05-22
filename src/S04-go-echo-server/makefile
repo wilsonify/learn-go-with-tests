@@ -13,7 +13,7 @@ run:
 	go build -o app
 
 docker-build:
-	docker build --network=host -t openapi .
+	docker build --network=host -t go-echo-server .
 
 docker-run: docker-build
 	docker run --rm -it openapi

@@ -1,6 +1,6 @@
 package handlers
 import (
-    "github.com/GIT_USER_ID/GIT_REPO_ID/models"
+    "go-echo-server/models"
     "github.com/labstack/echo/v4"
     "net/http"
 )

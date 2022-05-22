@@ -11,7 +11,7 @@ run:
 	go run main.go
 
 docker-build:
-	docker build --network=host -t openapi .
+	docker build --network=host -t go-bin-server .
 
 docker-run: docker-build
 	docker run --rm -it openapi
