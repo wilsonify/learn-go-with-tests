@@ -1,4 +1,4 @@
-module go-server
+module S06-go-server
 
 go 1.17
 
