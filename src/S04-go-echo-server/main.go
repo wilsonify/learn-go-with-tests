@@ -1,7 +1,8 @@
 package main
 
 import (
-	"go-echo-server/handlers"
+	"S04-go-echo-server/handlers"
+
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -9,17 +10,15 @@ import (
 func main() {
 	e := echo.New()
 
-    //todo: handle the error!
+	//todo: handle the error!
 	c, _ := handlers.NewContainer()
 
 	// Middleware
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-
 	// Strength - summary: signal strength
 	e.POST("/strength", c.Strength)
-
 
 	// Start server
 	e.Logger.Fatal(e.Start(":8080"))

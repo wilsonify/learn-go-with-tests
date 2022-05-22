@@ -1,4 +1,4 @@
-module go-echo-server
+module S04-go-echo-server
 
 go 1.17
 
