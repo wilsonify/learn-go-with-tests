@@ -11,8 +11,7 @@ package openapi
 
 import (
 	"context"
-	"net/http"
-	"errors"
+	"fmt"
 )
 
 // DefaultApiService is a service that implements the logic for the DefaultApiServicer
@@ -28,17 +27,17 @@ func NewDefaultApiService() DefaultApiServicer {
 
 // Strength - summary: signal strength
 func (s *DefaultApiService) Strength(ctx context.Context, body StrengthInput) (ImplResponse, error) {
-	// TODO - update Strength with the required logic for this service method.
-	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+	strength_float := body.computeStrength()
+	outputStrengthOutput := StrengthOutput{
+		body.Expected,
+		body.Actual,
+		strength_float,
+	}
 
-	//TODO: Uncomment the next line to return response Response(200, StrengthOutput{}) or use other options such as http.Ok ...
-	//return Response(200, StrengthOutput{}), nil
+	fmt.Println("Expected=", body.Expected)
+	fmt.Println("Actual=", body.Actual)
+	fmt.Println("strength_float=", strength_float)
 
-	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
-	//return Response(400, nil),nil
+	return Response(200, outputStrengthOutput), nil
 
-	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
-	//return Response(500, nil),nil
-
-	return Response(http.StatusNotImplemented, nil), errors.New("Strength method not implemented")
 }

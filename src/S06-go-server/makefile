@@ -11,8 +11,13 @@ run:
 	go run main.go
 
 docker-build:
-	docker build --network=host -t openapi .
+	docker build -t go-server .
 
 docker-run:
-	docker run --rm -it openapi
+	docker run --rm -d -p 49154:8080 go-server
 
+go.mod:
+	go mod init go-server
+
+go.sum: go.mod
+	go list && go mod tidy

@@ -10,10 +10,14 @@
 package openapi
 
 type StrengthInput struct {
-
 	Actual int32 `json:"actual,omitempty"`
 
 	Expected int32 `json:"expected,omitempty"`
+}
+
+// signal strength
+func (s StrengthInput) computeStrength() float32 {
+	return float32(s.Actual) / float32(s.Expected)
 }
 
 // AssertStrengthInputRequired checks if the required fields are not zero-ed

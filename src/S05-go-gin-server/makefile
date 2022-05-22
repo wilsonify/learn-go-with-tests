@@ -14,7 +14,7 @@ docker-build:
 	docker build --network=host -t go-gin-server .
 
 docker-run: docker-build
-	docker run --rm -d -P go-gin-server
+	docker run --rm -d -p 49153:8080 go-gin-server
 
 go.mod:
 	go mod init go-gin-server
