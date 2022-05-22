@@ -1,4 +1,4 @@
-module go-gin-server
+module S05-go-gin-server
 
 go 1.17
 

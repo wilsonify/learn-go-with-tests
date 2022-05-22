@@ -10,7 +10,7 @@
 package main
 
 import (
-	sw "go-gin-server/go"
+	sw "S05-go-gin-server/go"
 	"log"
 )
 
