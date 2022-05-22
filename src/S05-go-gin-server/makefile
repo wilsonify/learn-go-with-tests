@@ -11,8 +11,13 @@ run:
 	go run main.go
 
 docker-build:
-	docker build --network=host -t go-bin-server .
+	docker build --network=host -t go-gin-server .
 
 docker-run: docker-build
-	docker run --rm -it openapi
+	docker run --rm -d -P go-gin-server
 
+go.mod:
+	go mod init go-gin-server
+
+go.sum: go.mod
+	go list && go mod tidy

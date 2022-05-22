@@ -1,15 +1,18 @@
-FROM golang:1.10 AS build
-WORKDIR /go/src
-COPY go ./go
-COPY main.go .
+#FROM golang:1.10 AS build
+FROM golang:1.16-alpine3.13 as build
+RUN apk add --no-cache git gcc
+RUN mkdir /app
+WORKDIR /app
+COPY . .
 
 ENV CGO_ENABLED=0
 RUN go get -d -v ./...
-
+#RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o openapi
 RUN go build -a -installsuffix cgo -o openapi .
 
-FROM scratch AS runtime
+FROM alpine:3.13
 ENV GIN_MODE=release
-COPY --from=build /go/src/openapi ./
+COPY --from=build /app/openapi .
 EXPOSE 8080/tcp
+USER 1001
 ENTRYPOINT ["./openapi"]

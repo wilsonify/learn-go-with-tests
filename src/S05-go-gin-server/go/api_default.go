@@ -10,6 +10,7 @@
 package openapi
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -17,5 +18,19 @@ import (
 
 // Strength - summary: signal strength
 func Strength(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{})
+	var inputStrengthInput StrengthInput
+	c.BindJSON(&inputStrengthInput)
+
+	strength_float := inputStrengthInput.computeStrength()
+	outputStrengthOutput := StrengthOutput{
+		inputStrengthInput.Expected,
+		inputStrengthInput.Actual,
+		strength_float,
+	}
+
+	fmt.Println("Expected=", inputStrengthInput.Expected)
+	fmt.Println("Actual=", inputStrengthInput.Actual)
+	fmt.Println("strength_float=", strength_float)
+
+	c.JSON(http.StatusOK, outputStrengthOutput)
 }
