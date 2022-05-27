@@ -1,3 +1,3 @@
 module c01-hello-world
 
-go 1.13
+go 1.18
