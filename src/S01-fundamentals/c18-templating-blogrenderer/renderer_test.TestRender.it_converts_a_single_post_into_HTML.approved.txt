@@ -32,7 +32,7 @@ Tags: <ul><li>go</li><li>tdd</li></ul>
 <footer>
     <ul>
         <li><a href="https://twitter.com/quii">Twitter</a></li>
-        <li><a href="https://github.com/quii">GitHub</a></li>
+        <li><a href="https://github.com/wilsonify">GitHub</a></li>
     </ul>
 </footer>
 </body>
