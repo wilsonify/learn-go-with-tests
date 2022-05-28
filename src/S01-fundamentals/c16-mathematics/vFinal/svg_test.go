@@ -1,4 +1,4 @@
-package svg_test
+package clockface_test
 
 import (
 	"bytes"
