@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/quii/learn-go-with-tests/math/vFinal/clockface/svg"
+	"github.com/wilsonify/learn-go-with-tests/math/vFinal/clockface/svg"
 )
 
 func main() {

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/quii/learn-go-with-tests/command-line/v1"
 	"log"
 	"net/http"
 	"os"

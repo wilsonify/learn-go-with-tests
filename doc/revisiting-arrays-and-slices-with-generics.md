@@ -1,6 +1,6 @@
 # Revisiting arrays and slices with generics
 
-**[The code for this chapter is a continuation from Arrays and Slices, found here](https://github.com/quii/learn-go-with-tests/tree/main/arrays)**
+**[The code for this chapter is a continuation from Arrays and Slices, found here](https://github.com/wilsonify/learn-go-with-tests/tree/main/arrays)**
 
 Take a look at both `SumAll` and `SumAllTails` that we wrote in [arrays and slices](arrays-and-slices.md). If you don't have your version please copy the code from the [arrays and slices](arrays-and-slices.md) chapter along with the tests.
 
@@ -185,7 +185,7 @@ func TestBadBank(t *testing.T) {
 
 ## Try to run the test
 ```
-# github.com/quii/learn-go-with-tests/arrays/v8 [github.com/quii/learn-go-with-tests/arrays/v8.test]
+# github.com/wilsonify/learn-go-with-tests/arrays/v8 [github.com/wilsonify/learn-go-with-tests/arrays/v8.test]
 ./bad_bank_test.go:6:20: undefined: Transaction
 ./bad_bank_test.go:18:14: undefined: BalanceFor
 ```

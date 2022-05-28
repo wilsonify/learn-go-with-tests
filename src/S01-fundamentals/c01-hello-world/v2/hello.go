@@ -13,28 +13,29 @@ func Hello() string {
 
 func here() string {
 	_, fileName, fileLine, ok := runtime.Caller(1)
-	if ok {
-		fmt.Sprintf("%s:%d", fileName, fileLine)
-	}
+	fmt.Printf("fileName = %s \n", fileName)
+	fmt.Printf("fileLine = %d \n", fileLine)
+	fmt.Printf("ok = %t \n", ok)
 	fileName_base := path.Base(fileName)
-	fmt.Sprintf("fileName_base = %s", fileName_base)
+	fmt.Printf("fileName_base = %s \n", fileName_base)
 	fileName_clean := path.Clean(fileName)
-	fmt.Sprintf("fileName_clean = %s", fileName_clean)
+	fmt.Printf("fileName_clean = %s", fileName_clean)
 	fileName_dir := path.Dir(fileName)
-	fmt.Sprintf("fileName_dir = %s", fileName_dir)
+	fmt.Printf("fileName_dir = %s", fileName_dir)
 	fileName_ext := path.Ext(fileName)
-	fmt.Sprintf("fileName_ext = %s", fileName_ext)
+	fmt.Printf("fileName_ext = %s", fileName_ext)
 	fileName_isabs := path.IsAbs(fileName)
-	fmt.Sprintf("fileName_isabs = %bool", fileName_isabs)
+	fmt.Printf("fileName_isabs = %t", fileName_isabs)
 	fileName_join := path.Join(fileName)
-	fmt.Sprintf("fileName_join = %s", fileName_join)
+	fmt.Printf("fileName_join = %s", fileName_join)
 	fileName_head, fileName_tail := path.Split(fileName)
-	fmt.Sprintf("fileName_head = %s", fileName_head)
-	fmt.Sprintf("fileName_tail = %s", fileName_tail)
-	return fileName
+	fmt.Printf("fileName_head = %s", fileName_head)
+	fmt.Printf("fileName_tail = %s", fileName_tail)
+
+	return fileName_head
 }
 
 func main() {
 	fmt.Println(Hello())
-
+	fmt.Println(here())
 }

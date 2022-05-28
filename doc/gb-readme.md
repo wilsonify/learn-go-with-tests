@@ -83,6 +83,6 @@ Taking my experience of learning with a group and my own personal way I am going
 
 ## Feedback
 
-* Add issues/submit PRs [here](https://github.com/quii/learn-go-with-tests) or [tweet me @quii](https://twitter.com/quii)
+* Add issues/submit PRs [here](https://github.com/wilsonify/learn-go-with-tests) or [tweet me @quii](https://twitter.com/quii)
 
-[MIT license](https://github.com/quii/learn-go-with-tests/blob/main/LICENSE.md)
+[MIT license](https://github.com/wilsonify/learn-go-with-tests/blob/main/LICENSE.md)

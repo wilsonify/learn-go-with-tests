@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	poker "github.com/quii/learn-go-with-tests/websockets/v2"
+	poker "github.com/wilsonify/learn-go-with-tests/websockets/v2"
 )
 
 var dummyBlindAlerter = &poker.SpyBlindAlerter{}

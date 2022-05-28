@@ -3,7 +3,7 @@ package blogrenderer_test
 import (
 	"bytes"
 	approvals "github.com/approvals/go-approval-tests"
-	"github.com/quii/learn-go-with-tests/blogrenderer"
+	"github.com/wilsonify/learn-go-with-tests/blogrenderer"
 	"io"
 	"testing"
 )

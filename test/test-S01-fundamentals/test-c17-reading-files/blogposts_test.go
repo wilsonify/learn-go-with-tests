@@ -1,7 +1,7 @@
 package blogposts_test
 
 import (
-	blogposts "github.com/quii/learn-go-with-tests/reading-files"
+	blogposts "github.com/wilsonify/learn-go-with-tests/reading-files"
 	"reflect"
 	"testing"
 	"testing/fstest"

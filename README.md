@@ -6,12 +6,12 @@
 
 [Art by Denise](https://twitter.com/deniseyu21)
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/quii/learn-go-with-tests)](https://goreportcard.com/report/github.com/quii/learn-go-with-tests)
+[![Go Report Card](https://goreportcard.com/badge/github.com/wilsonify/learn-go-with-tests)](https://goreportcard.com/report/github.com/wilsonify/learn-go-with-tests)
 
 ## Formats
 
 - [Gitbook](https://quii.gitbook.io/learn-go-with-tests)
-- [EPUB or PDF](https://github.com/quii/learn-go-with-tests/releases)
+- [EPUB or PDF](https://github.com/wilsonify/learn-go-with-tests/releases)
 
 ## Translations
 
@@ -102,7 +102,7 @@ If you have such a question raise it as an issue on github and I'll try and find
 ## Contributing
 
 * _This project is work in progress_ If you would like to contribute, please do get in touch.
-* Read [contributing.md](https://github.com/quii/learn-go-with-tests/tree/842f4f24d1f1c20ba3bb23cbc376c7ca6f7ca79a/contributing.md) for guidelines
+* Read [contributing.md](https://github.com/wilsonify/learn-go-with-tests/tree/842f4f24d1f1c20ba3bb23cbc376c7ca6f7ca79a/contributing.md) for guidelines
 * Any ideas? Create an issue
 
 ## Background
@@ -160,7 +160,7 @@ Taking my experience of learning with a group and my own personal way I am going
 
 ## Feedback
 
-* Add issues/submit PRs [here](https://github.com/quii/learn-go-with-tests) or [tweet me @quii](https://twitter.com/quii)
+* Add issues/submit PRs [here](https://github.com/wilsonify/learn-go-with-tests) or [tweet me @quii](https://twitter.com/quii)
 
 [MIT license](LICENSE.md)
 

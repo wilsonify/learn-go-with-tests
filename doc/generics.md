@@ -1,6 +1,6 @@
 # Generics
 
-**[You can find all the code for this chapter here](https://github.com/quii/learn-go-with-tests/tree/main/generics)**
+**[You can find all the code for this chapter here](https://github.com/wilsonify/learn-go-with-tests/tree/main/generics)**
 
 This chapter will give you an introduction to generics, dispel reservations you may have about them and, give you an idea how to simplify some of your code in the future. After reading this you'll know how to write:
 
@@ -56,7 +56,7 @@ t.Run("asserting on strings", func(t *testing.T) {
 You'll get an error
 
 ```
-# github.com/quii/learn-go-with-tests/generics [github.com/quii/learn-go-with-tests/generics.test]
+# github.com/wilsonify/learn-go-with-tests/generics [github.com/wilsonify/learn-go-with-tests/generics.test]
 ./generics_test.go:12:18: cannot use "hello" (untyped string constant) as int value in argument to AssertEqual
 ./generics_test.go:13:21: cannot use "hello" (untyped string constant) as int value in argument to AssertNotEqual
 ./generics_test.go:13:30: cannot use "Grace" (untyped string constant) as int value in argument to AssertNotEqual
@@ -359,7 +359,7 @@ func (s *Stack) Pop() (interface{}, bool) {
 ```
 
 - We're aliasing our previous implementations of `StackOfInts` and `StackOfStrings` to a new unified type `Stack`
-- We've removed the type safety from the `Stack` by making it so `values` is a [slice](https://github.com/quii/learn-go-with-tests/blob/main/arrays-and-slices.md) of `interface{}`
+- We've removed the type safety from the `Stack` by making it so `values` is a [slice](https://github.com/wilsonify/learn-go-with-tests/blob/main/arrays-and-slices.md) of `interface{}`
 
 To try this code, you'll have to remove the type constraints from our assert functions:
 
@@ -529,7 +529,7 @@ If you're inexperienced with statically-typed languages, the point of generics m
 
 - Less safe (mix apples and oranges), requires more error handling
 - Less expressive, `interface{}` tells you nothing about the data
-- More likely to rely on [reflection](https://github.com/quii/learn-go-with-tests/blob/main/reflection.md), type-assertions etc which makes your code more difficult to work with and more error prone as it pushes checks from compile-time to runtime
+- More likely to rely on [reflection](https://github.com/wilsonify/learn-go-with-tests/blob/main/reflection.md), type-assertions etc which makes your code more difficult to work with and more error prone as it pushes checks from compile-time to runtime
 
 Using statically typed languages is an act of describing constraints. If you do it well, you create code that is not only safe and simple to use but also simpler to write because the possible solution space is smaller.
 

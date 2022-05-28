@@ -1,6 +1,6 @@
 # HTML Templates
 
-**[You can find all the code here](https://github.com/quii/learn-go-with-tests/tree/main/blogrenderer)**
+**[You can find all the code here](https://github.com/wilsonify/learn-go-with-tests/tree/main/blogrenderer)**
 
 We live in a world where everyone wants to build web applications with the latest flavour of the month frontend framework built upon gigabytes of transpiled JavaScript, working with a Byzantine build system; [but maybe that's not always necessary](https://quii.dev/The_Web_I_Want).  
 
@@ -72,7 +72,7 @@ package blogrenderer_test
 
 import (
 	"bytes"
-	"github.com/quii/learn-go-with-tests/blogrenderer"
+	"github.com/wilsonify/learn-go-with-tests/blogrenderer"
 	"testing"
 )
 
@@ -500,7 +500,7 @@ And `bottom.gohtml`
 <footer>
     <ul>
         <li><a href="https://twitter.com/quii">Twitter</a></li>
-        <li><a href="https://github.com/quii">GitHub</a></li>
+        <li><a href="https://github.com/wilsonify">GitHub</a></li>
     </ul>
 </footer>
 </body>

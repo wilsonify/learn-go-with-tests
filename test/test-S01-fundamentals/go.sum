@@ -1,6 +1,6 @@
-github.com/approvals/go-approval-tests v0.0.0-20211008131110-0c40b30e0000 h1:H152l3O+2XIXQu8IrqEXeqJOFCvSShUXs7+x0lw8V1k=
-github.com/approvals/go-approval-tests v0.0.0-20211008131110-0c40b30e0000/go.mod h1:PJOqSY8IofNv3heAD6k8E7EfFS6okiSS9bSAasaAUME=
+github.com/approvals/go-approval-tests v0.0.0-20220429035603-e60d9ca44d3e h1:ASYyPk+801v930jMIGUq/7MWrOsCLiuNHkE3QgJJsDo=
+github.com/approvals/go-approval-tests v0.0.0-20220429035603-e60d9ca44d3e/go.mod h1:PJOqSY8IofNv3heAD6k8E7EfFS6okiSS9bSAasaAUME=
 github.com/gomarkdown/markdown v0.0.0-20220510115730-2372b9aa33e5 h1:mjLaNMRojfgo2qgSdEX1CzmG7rHTeOWZdO1T1sgjEb0=
 github.com/gomarkdown/markdown v0.0.0-20220510115730-2372b9aa33e5/go.mod h1:JDGcbDT52eL4fju3sZ4TeHGsQwhG9nbDV21aMyhwPoA=
-github.com/quii/learn-go-with-tests v0.0.0-20220430154026-0bf1d56944af h1:0wKruyVrYGBDrX5/+faWr/xBZ3YDQaICcQWvCrrCi6c=
-github.com/quii/learn-go-with-tests v0.0.0-20220430154026-0bf1d56944af/go.mod h1:Tj+8i1g8Zi5oxB6zsv8By2Xvr7LMr4zgmh89zQmD+8U=
+github.com/wilsonify/learn-go-with-tests v0.0.0-20220430154026-0bf1d56944af h1:0wKruyVrYGBDrX5/+faWr/xBZ3YDQaICcQWvCrrCi6c=
+github.com/wilsonify/learn-go-with-tests v0.0.0-20220430154026-0bf1d56944af/go.mod h1:Tj+8i1g8Zi5oxB6zsv8By2Xvr7LMr4zgmh89zQmD+8U=
