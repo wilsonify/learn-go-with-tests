@@ -5,8 +5,6 @@ import (
 	"io"
 	"strings"
 	"testing"
-
-	poker "github.com/wilsonify/learn-go-with-tests/websockets/v1"
 )
 
 var dummyBlindAlerter = &poker.SpyBlindAlerter{}

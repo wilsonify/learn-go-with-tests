@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	poker "github.com/wilsonify/learn-go-with-tests/time/v2"
+	poker "
 )
 
 var dummyBlindAlerter = &poker.SpyBlindAlerter{}

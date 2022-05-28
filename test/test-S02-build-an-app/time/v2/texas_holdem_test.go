@@ -2,7 +2,7 @@ package poker_test
 
 import (
 	"fmt"
-	"github.com/wilsonify/learn-go-with-tests/time/v2"
+
 	"testing"
 	"time"
 )

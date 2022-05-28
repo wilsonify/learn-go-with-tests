@@ -1,7 +1,6 @@
 package poker_test
 
 import (
-	"github.com/wilsonify/learn-go-with-tests/websockets/v2"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -10,7 +9,7 @@ import (
 func TestRecordingWinsAndRetrievingThem(t *testing.T) {
 	database, cleanDatabase := createTempFile(t, `[]`)
 	defer cleanDatabase()
-	store, err := poker.NewFileSystemPlayerStore(database)
+	store, err := NewFileSystemPlayerStore(database)
 
 	assertNoError(t, err)
 

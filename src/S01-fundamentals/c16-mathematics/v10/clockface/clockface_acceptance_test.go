@@ -5,8 +5,6 @@ import (
 	"encoding/xml"
 	"testing"
 	"time"
-
-	"github.com/wilsonify/learn-go-with-tests/math/v10/clockface"
 )
 
 type SVG struct {

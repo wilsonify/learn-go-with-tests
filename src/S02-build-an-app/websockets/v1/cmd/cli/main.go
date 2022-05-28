@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	poker "github.com/wilsonify/learn-go-with-tests/websockets/v1"
+	poker "
 )
 
 const dbFileName = "game.db.json"

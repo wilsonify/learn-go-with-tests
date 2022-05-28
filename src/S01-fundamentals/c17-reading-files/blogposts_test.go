@@ -1,7 +1,6 @@
 package blogposts_test
 
 import (
-	blogposts "github.com/wilsonify/learn-go-with-tests/reading-files"
 	"reflect"
 	"testing"
 	"testing/fstest"
@@ -29,13 +28,13 @@ M`
 		"hello-world2.md": {Data: []byte(secondBody)},
 	}
 
-	posts, err := blogposts.NewPostsFromFS(fs)
+	posts, err := NewPostsFromFS(fs)
 
 	assertNoError(t, err)
 
 	assertPostsLength(t, posts, fs)
 
-	assertPost(t, posts[0], blogposts.Post{
+	assertPost(t, posts[0], Post{
 		Title:       "Post 1",
 		Description: "Description 1",
 		Tags:        []string{"tdd", "go"},
@@ -51,14 +50,14 @@ func assertNoError(t *testing.T, err error) {
 	}
 }
 
-func assertPostsLength(t *testing.T, posts []blogposts.Post, fs fstest.MapFS) {
+func assertPostsLength(t *testing.T, posts []Post, fs fstest.MapFS) {
 	t.Helper()
 	if len(posts) != len(fs) {
 		t.Errorf("got %d posts, wanted %d posts", len(posts), len(fs))
 	}
 }
 
-func assertPost(t *testing.T, got blogposts.Post, want blogposts.Post) {
+func assertPost(t *testing.T, got Post, want Post) {
 	t.Helper()
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("got %+v, want %+v", got, want)

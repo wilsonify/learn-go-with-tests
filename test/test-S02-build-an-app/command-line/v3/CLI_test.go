@@ -1,7 +1,6 @@
 package poker_test
 
 import (
-	"github.com/wilsonify/learn-go-with-tests/command-line/v3"
 	"io"
 	"strings"
 	"testing"

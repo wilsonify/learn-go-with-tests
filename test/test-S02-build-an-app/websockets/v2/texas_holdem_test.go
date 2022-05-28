@@ -2,7 +2,7 @@ package poker_test
 
 import (
 	"fmt"
-	"github.com/wilsonify/learn-go-with-tests/websockets/v2"
+
 	"io/ioutil"
 	"testing"
 	"time"

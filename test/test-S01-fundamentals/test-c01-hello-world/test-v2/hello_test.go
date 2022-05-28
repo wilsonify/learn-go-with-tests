@@ -1,13 +1,13 @@
 package main
 
 import (
-	v2 "S01-fundamentals/c01-hello-world/v2/hello.go"
+	hello "S01-fundamentals/c01-hello-world/v2"
 	"testing"
 )
 
 func TestHello(t *testing.T) {
 
-	got := v2.Hello()
+	got := hello.Hello()
 	want := "Hello, world"
 
 	if got != want {

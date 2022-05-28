@@ -3,14 +3,13 @@ package blogrenderer_test
 import (
 	"bytes"
 	approvals "github.com/approvals/go-approval-tests"
-	"github.com/wilsonify/learn-go-with-tests/blogrenderer"
 	"io"
 	"testing"
 )
 
 func TestRender(t *testing.T) {
 	var (
-		aPost = blogrenderer.Post{
+		aPost = Post{
 			Title: "hello world",
 			Body: `# First recipe!
 Welcome to my **amazing blog**. I am going to write about my family recipes, and make sure I write a long, irrelevant and boring story about my family before you get to the actual instructions.`,

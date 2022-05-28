@@ -4,8 +4,6 @@ import (
 	"math"
 	"testing"
 	"time"
-
-	. "github.com/wilsonify/learn-go-with-tests/math/vFinal/clockface"
 )
 
 func TestSecondsInRadians(t *testing.T) {

@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-
-	poker "github.com/wilsonify/learn-go-with-tests/websockets/v1"
 )
 
 const dbFileName = "game.db.json"

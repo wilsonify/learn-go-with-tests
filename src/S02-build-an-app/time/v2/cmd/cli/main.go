@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	poker "github.com/wilsonify/learn-go-with-tests/time/v2"
+	poker "
 )
 
 const dbFileName = "game.db.json"

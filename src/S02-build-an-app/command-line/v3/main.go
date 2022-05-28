@@ -4,14 +4,12 @@ import (
 	"fmt"
 	"log"
 	"os"
-
-	poker "github.com/wilsonify/learn-go-with-tests/command-line/v3"
 )
 
 const dbFileName = "game.db.json"
 
 func main() {
-	store, close, err := poker.FileSystemPlayerStoreFromFile(dbFileName)
+	store, close, err := FileSystemPlayerStoreFromFile(dbFileName)
 
 	if err != nil {
 		log.Fatal(err)

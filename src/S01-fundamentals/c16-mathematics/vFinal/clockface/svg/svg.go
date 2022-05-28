@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"io"
 	"time"
-
-	cf "github.com/wilsonify/learn-go-with-tests/math/vFinal/clockface"
 )
 
 const (

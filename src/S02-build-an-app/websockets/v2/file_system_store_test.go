@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	poker "github.com/wilsonify/learn-go-with-tests/websockets/v2"
+	poker "
 )
 
 func createTempFile(t testing.TB, initialData string) (*os.File, func()) {

@@ -11,7 +11,6 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
-	poker "github.com/wilsonify/learn-go-with-tests/websockets/v2"
 )
 
 var (

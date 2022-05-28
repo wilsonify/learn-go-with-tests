@@ -5,12 +5,10 @@ import (
 	"io"
 	"strings"
 	"testing"
-
-	poker "github.com/wilsonify/learn-go-with-tests/time/v2"
 )
 
-var dummyBlindAlerter = &poker.SpyBlindAlerter{}
-var dummyPlayerStore = &poker.StubPlayerStore{}
+var dummyBlindAlerter = &SpyBlindAlerter{}
+var dummyPlayerStore = &StubPlayerStore{}
 var dummyStdIn = &bytes.Buffer{}
 var dummyStdOut = &bytes.Buffer{}
 

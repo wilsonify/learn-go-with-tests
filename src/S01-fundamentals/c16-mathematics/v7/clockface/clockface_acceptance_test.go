@@ -4,8 +4,6 @@ import (
 	"strings"
 	"testing"
 	"time"
-
-	"github.com/wilsonify/learn-go-with-tests/math/v7/clockface"
 )
 
 func TestSVGWriterAtMidnight(t *testing.T) {

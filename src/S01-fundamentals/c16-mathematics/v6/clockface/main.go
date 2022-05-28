@@ -5,20 +5,18 @@ import (
 	"io"
 	"os"
 	"time"
-
-	"github.com/wilsonify/learn-go-with-tests/math/v6/clockface"
 )
 
 func main() {
 	t := time.Now()
-	sh := clockface.SecondHand(t)
+	sh := SecondHand(t)
 	io.WriteString(os.Stdout, svgStart)
 	io.WriteString(os.Stdout, bezel)
 	io.WriteString(os.Stdout, secondHandTag(sh))
 	io.WriteString(os.Stdout, svgEnd)
 }
 
-func secondHandTag(p clockface.Point) string {
+func secondHandTag(p Point) string {
 	return fmt.Sprintf(`<line x1="150" y1="150" x2="%f" y2="%f" style="fill:none;stroke:#f00;stroke-width:3px;"/>`, p.X, p.Y)
 }
 
