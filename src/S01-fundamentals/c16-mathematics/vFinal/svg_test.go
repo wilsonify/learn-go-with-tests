@@ -5,8 +5,6 @@ import (
 	"encoding/xml"
 	"testing"
 	"time"
-
-	. "
 )
 
 type SVG struct {

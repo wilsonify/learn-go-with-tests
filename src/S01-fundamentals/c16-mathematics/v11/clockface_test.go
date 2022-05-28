@@ -19,7 +19,7 @@ func TestSecondsInRadians(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(testName(c.time), func(t *testing.T) {
-			got := SecondsInRadians(c.time)
+			got := secondsInRadians(c.time)
 			if !roughlyEqualFloat64(got, c.angle) {
 				t.Fatalf("Wanted %v radians, but got %v", c.angle, got)
 			}
@@ -32,13 +32,13 @@ func TestSecondHandPoint(t *testing.T) {
 		time  time.Time
 		point Point
 	}{
-		{simpleTime(0, 0, 30), Point{X: 0, Y: -1}},
-		{simpleTime(0, 0, 45), Point{X: -1, Y: 0}},
+		{simpleTime(0, 0, 30), Point{0, -1}},
+		{simpleTime(0, 0, 45), Point{-1, 0}},
 	}
 
 	for _, c := range cases {
 		t.Run(testName(c.time), func(t *testing.T) {
-			got := SecondHandPoint(c.time)
+			got := secondHandPoint(c.time)
 			if !roughlyEqualPoint(got, c.point) {
 				t.Fatalf("Wanted %v Point, but got %v", c.point, got)
 			}
@@ -57,7 +57,7 @@ func TestMinutesInRadians(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(testName(c.time), func(t *testing.T) {
-			got := MinutesInRadians(c.time)
+			got := minutesInRadians(c.time)
 			if !roughlyEqualFloat64(got, c.angle) {
 				t.Fatalf("Wanted %v radians, but got %v", c.angle, got)
 			}
@@ -70,13 +70,13 @@ func TestMinuteHandPoint(t *testing.T) {
 		time  time.Time
 		point Point
 	}{
-		{simpleTime(0, 30, 0), Point{X: 0, Y: -1}},
-		{simpleTime(0, 45, 0), Point{X: -1, Y: 0}},
+		{simpleTime(0, 30, 0), Point{0, -1}},
+		{simpleTime(0, 45, 0), Point{-1, 0}},
 	}
 
 	for _, c := range cases {
 		t.Run(testName(c.time), func(t *testing.T) {
-			got := MinuteHandPoint(c.time)
+			got := minuteHandPoint(c.time)
 			if !roughlyEqualPoint(got, c.point) {
 				t.Fatalf("Wanted %v Point, but got %v", c.point, got)
 			}
@@ -97,7 +97,7 @@ func TestHoursInRadians(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(testName(c.time), func(t *testing.T) {
-			got := HoursInRadians(c.time)
+			got := hoursInRadians(c.time)
 			if !roughlyEqualFloat64(got, c.angle) {
 				t.Fatalf("Wanted %v radians, but got %v", c.angle, got)
 			}
@@ -110,13 +110,13 @@ func TestHourHandPoint(t *testing.T) {
 		time  time.Time
 		point Point
 	}{
-		{simpleTime(6, 0, 0), Point{X: 0, Y: -1}},
-		{simpleTime(21, 0, 0), Point{X: -1, Y: 0}},
+		{simpleTime(6, 0, 0), Point{0, -1}},
+		{simpleTime(21, 0, 0), Point{-1, 0}},
 	}
 
 	for _, c := range cases {
 		t.Run(testName(c.time), func(t *testing.T) {
-			got := HourHandPoint(c.time)
+			got := hourHandPoint(c.time)
 			if !roughlyEqualPoint(got, c.point) {
 				t.Fatalf("Wanted %v Point, but got %v", c.point, got)
 			}
