@@ -1,12 +1,17 @@
-// Writes an SVG clockface of the current time to Stdout.
+// Writes an SVG of the current time to Stdout.
 package clockface
 
 import (
 	"fmt"
 	"io"
+	"math"
 	"os"
 	"time"
 )
+
+func secondHandPoint(t time.Time) Point {
+	return angleToPoint(secondsInRadians(t))
+}
 
 func main() {
 	t := time.Now()
@@ -32,24 +37,24 @@ func Write(w io.Writer, t time.Time) {
 }
 
 func secondHand(w io.Writer, t time.Time) {
-	p := makeHand(cf.SecondHandPoint(t), secondHandLength)
+	p := makeHand(secondHandPoint(t), secondHandLength)
 	fmt.Fprintf(w, `<line x1="150" y1="150" x2="%.3f" y2="%.3f" style="fill:none;stroke:#f00;stroke-width:3px;"/>`, p.X, p.Y)
 }
 
 func minuteHand(w io.Writer, t time.Time) {
-	p := makeHand(cf.MinuteHandPoint(t), minuteHandLength)
+	p := makeHand(minuteHandPoint(t), minuteHandLength)
 	fmt.Fprintf(w, `<line x1="150" y1="150" x2="%.3f" y2="%.3f" style="fill:none;stroke:#000;stroke-width:3px;"/>`, p.X, p.Y)
 }
 
 func hourHand(w io.Writer, t time.Time) {
-	p := makeHand(cf.HourHandPoint(t), hourHandLength)
+	p := makeHand(hourHandPoint(t), hourHandLength)
 	fmt.Fprintf(w, `<line x1="150" y1="150" x2="%.3f" y2="%.3f" style="fill:none;stroke:#000;stroke-width:3px;"/>`, p.X, p.Y)
 }
 
-func makeHand(p cf.Point, length float64) cf.Point {
-	p = cf.Point{X: p.X * length, Y: p.Y * length}
-	p = cf.Point{X: p.X, Y: -p.Y}
-	return cf.Point{X: p.X + clockCentreX, Y: p.Y + clockCentreY}
+func makeHand(p Point, length float64) Point {
+	p = Point{X: p.X * length, Y: p.Y * length}
+	p = Point{X: p.X, Y: -p.Y}
+	return Point{X: p.X + clockCentreX, Y: p.Y + clockCentreY}
 }
 
 const svgStart = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -63,3 +68,47 @@ const svgStart = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 const bezel = `<circle cx="150" cy="150" r="100" style="fill:#fff;stroke:#000;stroke-width:5px;"/>`
 
 const svgEnd = `</svg>`
+
+const (
+	secondsInHalfClock = 30
+	secondsInClock     = 2 * secondsInHalfClock
+	minutesInHalfClock = 30
+	minutesInClock     = 2 * minutesInHalfClock
+	hoursInHalfClock   = 6
+	hoursInClock       = 2 * hoursInHalfClock
+)
+
+// A Point represents a two dimensional Cartesian coordinate.
+type Point struct {
+	X float64
+	Y float64
+}
+
+func secondsInRadians(t time.Time) float64 {
+	return (math.Pi / (secondsInHalfClock / float64(t.Second())))
+}
+
+func minutesInRadians(t time.Time) float64 {
+	return (secondsInRadians(t) / minutesInClock) +
+		(math.Pi / (minutesInHalfClock / float64(t.Minute())))
+}
+
+func minuteHandPoint(t time.Time) Point {
+	return angleToPoint(minutesInRadians(t))
+}
+
+func hoursInRadians(t time.Time) float64 {
+	return (minutesInRadians(t) / hoursInClock) +
+		(math.Pi / (hoursInHalfClock / float64(t.Hour()%hoursInClock)))
+}
+
+func hourHandPoint(t time.Time) Point {
+	return angleToPoint(hoursInRadians(t))
+}
+
+func angleToPoint(angle float64) Point {
+	x := math.Sin(angle)
+	y := math.Cos(angle)
+
+	return Point{x, y}
+}

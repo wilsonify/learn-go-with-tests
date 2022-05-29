@@ -1,4 +1,4 @@
-package clockface_test
+package clockface
 
 import (
 	"bytes"
