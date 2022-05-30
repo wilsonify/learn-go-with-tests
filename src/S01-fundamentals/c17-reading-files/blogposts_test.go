@@ -1,4 +1,4 @@
-package blogposts_test
+package blogposts
 
 import (
 	"reflect"

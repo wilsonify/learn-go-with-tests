@@ -1,4 +1,4 @@
-package blogrenderer_test
+package blogrenderer
 
 import (
 	"bytes"
@@ -18,7 +18,7 @@ Welcome to my **amazing blog**. I am going to write about my family recipes, and
 		}
 	)
 
-	postRenderer, err := blogrenderer.NewPostRenderer()
+	postRenderer, err := NewPostRenderer()
 
 	if err != nil {
 		t.Fatal(err)
@@ -36,7 +36,7 @@ Welcome to my **amazing blog**. I am going to write about my family recipes, and
 
 	t.Run("it renders an index of posts", func(t *testing.T) {
 		buf := bytes.Buffer{}
-		posts := []blogrenderer.Post{{Title: "Hello World"}, {Title: "Hello World 2"}}
+		posts := []Post{{Title: "Hello World"}, {Title: "Hello World 2"}}
 
 		if err := postRenderer.RenderIndex(&buf, posts); err != nil {
 			t.Fatal(err)
@@ -48,7 +48,7 @@ Welcome to my **amazing blog**. I am going to write about my family recipes, and
 
 func BenchmarkRender(b *testing.B) {
 	var (
-		aPost = blogrenderer.Post{
+		aPost = Post{
 			Title:       "hello world",
 			Body:        "This is a post",
 			Description: "This is a description",
@@ -56,7 +56,7 @@ func BenchmarkRender(b *testing.B) {
 		}
 	)
 
-	postRenderer, err := blogrenderer.NewPostRenderer()
+	postRenderer, err := NewPostRenderer()
 
 	if err != nil {
 		b.Fatal(err)
