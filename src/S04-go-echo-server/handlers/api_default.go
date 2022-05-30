@@ -1,9 +1,10 @@
 package handlers
 
 import (
-	"S04-go-echo-server/models"
 	"fmt"
 	"net/http"
+
+	"github.com/wilsonify/learn-go-with-tests/S04-go-echo-server/models"
 
 	"github.com/labstack/echo/v4"
 )
@@ -11,7 +12,8 @@ import (
 // Strength - summary: signal strength
 func (c *Container) Strength(ctx echo.Context) error {
 	var s models.StrengthInput
-	ctx.Bind(&inputStrengthInput)
+
+	ctx.Bind(&s)
 
 	strength_float := float32(s.Actual) / float32(s.Expected)
 	outputStrengthOutput := models.StrengthOutput{
