@@ -10,8 +10,9 @@
 package main
 
 import (
-	sw "S05-go-gin-server/go"
 	"log"
+
+	sw "github.com/wilsonify/learn-go-with-tests/S05-go-gin-server/go"
 )
 
 func main() {
