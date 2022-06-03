@@ -1,9 +1,12 @@
 package main
 
-import "testing"
+import (
+	hi "github.com/wilsonify/learn-go-with-tests/S01-fundamentals/c01-hello-world/v4"
+	"testing"
+)
 
 func TestHello(t *testing.T) {
-	got := Hello("Chris")
+	got := hi.Hello("Chris")
 	want := "Hello, Chris"
 
 	if got != want {

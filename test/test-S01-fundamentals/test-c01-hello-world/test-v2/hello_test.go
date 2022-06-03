@@ -1,13 +1,13 @@
 package main
 
 import (
-	hello "S01-fundamentals/c01-hello-world/v2"
+	hi "github.com/wilsonify/learn-go-with-tests/S01-fundamentals/c01-hello-world/v2"
 	"testing"
 )
 
 func TestHello(t *testing.T) {
 
-	got := hello.Hello()
+	got := hi.Hello()
 	want := "Hello, world"
 
 	if got != want {

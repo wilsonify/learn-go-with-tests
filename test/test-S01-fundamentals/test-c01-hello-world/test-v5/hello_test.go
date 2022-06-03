@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	hi "github.com/wilsonify/learn-go-with-tests/S01-fundamentals/c01-hello-world/v5"
+	"testing"
+)
 
 func TestHello(t *testing.T) {
 
@@ -12,13 +15,13 @@ func TestHello(t *testing.T) {
 	}
 
 	t.Run("saying hello to people", func(t *testing.T) {
-		got := Hello("Chris")
+		got := hi.Hello("Chris")
 		want := "Hello, Chris"
 		assertCorrectMessage(t, got, want)
 	})
 
 	t.Run("empty string defaults to 'world'", func(t *testing.T) {
-		got := Hello("")
+		got := hi.Hello("")
 		want := "Hello, World"
 		assertCorrectMessage(t, got, want)
 	})
