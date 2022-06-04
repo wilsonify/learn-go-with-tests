@@ -68,7 +68,7 @@ func (m MongoUserService) Register(user User) (insertedID string, err error) {
 	panic("implement me")
 }
 
-func main() {
+func Mainly() {
 	mongoService := NewMongoUserService()
 	server := NewUserServer(mongoService)
 	log.Fatal(http.ListenAndServe(":8000", http.HandlerFunc(server.RegisterUser)))

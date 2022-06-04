@@ -6,10 +6,6 @@ import (
 	"testing"
 )
 
-func Teapot(res http.ResponseWriter, req *http.Request) {
-	res.WriteHeader(http.StatusTeapot)
-}
-
 func TestTeapotHandler(t *testing.T) {
 	req := httptest.NewRequest(http.MethodGet, "/", nil)
 	res := httptest.NewRecorder()
