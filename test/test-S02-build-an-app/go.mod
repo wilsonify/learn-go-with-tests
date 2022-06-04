@@ -7,4 +7,4 @@ require (
 	github.com/wilsonify/learn-go-with-tests/S02-build-an-app v0.0.0
 )
 
-replace github.com/wilsonify/learn-go-with-tests/S02-build-an-app => ../../src/S02-build-an-app
+replace github.com/wilsonify/learn-go-with-tests/S02-build-an-app => ../../pkg/S02-build-an-app
