@@ -6,7 +6,7 @@ import (
 
 	"github.com/wilsonify/S04-go-echo-server/models"
 
-	"github.com/labstack/echo/v4"
+	echo "github.com/labstack/echo/v4"
 )
 
 // Strength - summary: signal strength
