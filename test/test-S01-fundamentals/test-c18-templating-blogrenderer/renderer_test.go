@@ -5,8 +5,9 @@ import (
 	"io"
 	"testing"
 
+	"blogrenderer"
+
 	approvals "github.com/approvals/go-approval-tests"
-	"github.com/quii/learn-go-with-tests/blogrenderer"
 )
 
 func TestRender(t *testing.T) {
