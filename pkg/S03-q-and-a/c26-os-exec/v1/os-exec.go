@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"os/exec"
 	"strings"
-	"testing"
 )
 
 type Payload struct {
@@ -20,7 +19,7 @@ func GetData(data io.Reader) string {
 	return strings.ToUpper(payload.Message)
 }
 
-func getXMLFromCommand() io.Reader {
+func GetXMLFromCommand() io.Reader {
 	cmd := exec.Command("cat", "msg.xml")
 	out, _ := cmd.StdoutPipe()
 

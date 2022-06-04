@@ -4,7 +4,7 @@ import (
 	"reflect"
 )
 
-func walk(x interface{}, fn func(input string)) {
+func Walk(x interface{}, fn func(input string)) {
 	val := getValue(x)
 
 	numberOfValues := 0
@@ -26,7 +26,7 @@ func walk(x interface{}, fn func(input string)) {
 	}
 }
 
-func getValue(x interface{}) reflect.Value {
+func GetValue(x interface{}) reflect.Value {
 	val := reflect.ValueOf(x)
 
 	if val.Kind() == reflect.Ptr {

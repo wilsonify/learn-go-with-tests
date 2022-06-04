@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func main() {
+func Main() {
 	server := &PlayerServer{NewInMemoryPlayerStore()}
 	log.Fatal(http.ListenAndServe(":5000", server))
 }

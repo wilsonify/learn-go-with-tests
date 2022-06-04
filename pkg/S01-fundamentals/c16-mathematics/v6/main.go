@@ -16,7 +16,7 @@ func Mainly() {
 	io.WriteString(os.Stdout, svgEnd)
 }
 
-func secondHandTag(p Point) string {
+func SecondHandTag(p Point) string {
 	return fmt.Sprintf(`<line x1="150" y1="150" x2="%f" y2="%f" style="fill:none;stroke:#f00;stroke-width:3px;"/>`, p.X, p.Y)
 }
 

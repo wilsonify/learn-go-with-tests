@@ -59,7 +59,7 @@ func (cli *CLI) PlayPoker() {
 	cli.game.Finish(winner)
 }
 
-func extractWinner(userInput string) (string, error) {
+func ExtractWinner(userInput string) (string, error) {
 	if !strings.Contains(userInput, " wins") {
 		return "", errors.New(BadWinnerInputMsg)
 	}

@@ -7,7 +7,7 @@ import (
 	hs "github.com/wilsonify/S02-build-an-app/c20-http-server/v1"
 )
 
-func main() {
+func Main() {
 	handler := http.HandlerFunc(hs.PlayerServer)
 	log.Fatal(http.ListenAndServe(":5000", handler))
 }

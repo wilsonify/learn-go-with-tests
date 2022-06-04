@@ -11,7 +11,7 @@ func Hello() string {
 	return "Hello, world"
 }
 
-func here() string {
+func Here() string {
 	_, fileName, fileLine, ok := runtime.Caller(1)
 	fmt.Printf("fileName = %s \n", fileName)
 	fmt.Printf("fileLine = %d \n", fileLine)

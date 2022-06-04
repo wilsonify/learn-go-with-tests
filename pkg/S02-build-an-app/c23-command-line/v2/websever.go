@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func server_main() {
+func Server_main() {
 	db, err := os.OpenFile(dbFileName, os.O_RDWR|os.O_CREATE, 0666)
 
 	if err != nil {

@@ -12,20 +12,21 @@ package openapi
 import (
 	"encoding/json"
 	"errors"
-	"github.com/gorilla/mux"
 	"io/ioutil"
 	"mime/multipart"
 	"net/http"
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/gorilla/mux"
 )
 
 // A Route defines the parameters for an api endpoint
 type Route struct {
-	Name		string
-	Method	  string
-	Pattern	 string
+	Name        string
+	Method      string
+	Pattern     string
 	HandlerFunc http.HandlerFunc
 }
 
@@ -102,7 +103,7 @@ func ReadFormFilesToTempFiles(r *http.Request, key string) ([]*os.File, error) {
 }
 
 // readFileHeaderToTempFile reads multipart.FileHeader and writes it to a temporary file
-func readFileHeaderToTempFile(fileHeader *multipart.FileHeader) (*os.File, error) {
+func ReadFileHeaderToTempFile(fileHeader *multipart.FileHeader) (*os.File, error) {
 	formFile, err := fileHeader.Open()
 	if err != nil {
 		return nil, err
@@ -128,7 +129,7 @@ func readFileHeaderToTempFile(fileHeader *multipart.FileHeader) (*os.File, error
 }
 
 // parseInt64Parameter parses a string parameter to an int64.
-func parseInt64Parameter(param string, required bool) (int64, error) {
+func ParseInt64Parameter(param string, required bool) (int64, error) {
 	if param == "" {
 		if required {
 			return 0, errors.New(errMsgRequiredMissing)
@@ -141,7 +142,7 @@ func parseInt64Parameter(param string, required bool) (int64, error) {
 }
 
 // parseInt32Parameter parses a string parameter to an int32.
-func parseInt32Parameter(param string, required bool) (int32, error) {
+func ParseInt32Parameter(param string, required bool) (int32, error) {
 	if param == "" {
 		if required {
 			return 0, errors.New(errMsgRequiredMissing)
@@ -159,7 +160,7 @@ func parseInt32Parameter(param string, required bool) (int32, error) {
 }
 
 // parseBoolParameter parses a string parameter to a bool
-func parseBoolParameter(param string) (bool, error) {
+func ParseBoolParameter(param string) (bool, error) {
 	val, err := strconv.ParseBool(param)
 	if err != nil {
 		return false, err
@@ -169,7 +170,7 @@ func parseBoolParameter(param string) (bool, error) {
 }
 
 // parseInt64ArrayParameter parses a string parameter containing array of values to []int64.
-func parseInt64ArrayParameter(param, delim string, required bool) ([]int64, error) {
+func ParseInt64ArrayParameter(param, delim string, required bool) ([]int64, error) {
 	if param == "" {
 		if required {
 			return nil, errors.New(errMsgRequiredMissing)
@@ -193,7 +194,7 @@ func parseInt64ArrayParameter(param, delim string, required bool) ([]int64, erro
 }
 
 // parseInt32ArrayParameter parses a string parameter containing array of values to []int32.
-func parseInt32ArrayParameter(param, delim string, required bool) ([]int32, error) {
+func ParseInt32ArrayParameter(param, delim string, required bool) ([]int32, error) {
 	if param == "" {
 		if required {
 			return nil, errors.New(errMsgRequiredMissing)

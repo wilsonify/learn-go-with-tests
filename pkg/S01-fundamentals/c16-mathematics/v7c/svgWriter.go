@@ -20,7 +20,7 @@ func SVGWriter(w io.Writer, t time.Time) {
 	io.WriteString(w, svgEnd)
 }
 
-func secondHand(w io.Writer, t time.Time) {
+func SecondHand(w io.Writer, t time.Time) {
 	p := secondHandPoint(t)
 	p = Point{p.X * secondHandLength, p.Y * secondHandLength}
 	p = Point{p.X, -p.Y}

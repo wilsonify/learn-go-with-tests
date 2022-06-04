@@ -51,7 +51,7 @@ func (cli *CLI) PlayPoker() {
 	cli.game.Finish(winner)
 }
 
-func extractWinner(userInput string) string {
+func ExtractWinner(userInput string) string {
 	return strings.Replace(userInput, " wins", "", 1)
 }
 

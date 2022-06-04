@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func main_webserver() {
+func Main_webserver() {
 	store, close, err := FileSystemPlayerStoreFromFile(dbFileName)
 
 	if err != nil {

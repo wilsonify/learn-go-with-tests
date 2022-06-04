@@ -7,7 +7,7 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 )
 
-func main() {
+func Main() {
 	e := echo.New()
 
 	//todo: handle the error!

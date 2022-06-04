@@ -26,7 +26,7 @@ func (cli *CLI) PlayPoker() {
 	cli.playerStore.RecordWin(extractWinner(userInput))
 }
 
-func extractWinner(userInput string) string {
+func ExtractWinner(userInput string) string {
 	return strings.Replace(userInput, " wins", "", 1)
 }
 

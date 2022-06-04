@@ -1,4 +1,4 @@
-package v1
+package sync
 
 // Counter will increment a number.
 type Counter struct {

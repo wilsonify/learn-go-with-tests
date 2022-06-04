@@ -8,7 +8,7 @@ import (
 
 const dbFileName = "game.db.json"
 
-func main() {
+func Main() {
 	store, close, err := FileSystemPlayerStoreFromFile(dbFileName)
 
 	if err != nil {

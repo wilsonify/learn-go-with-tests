@@ -23,7 +23,7 @@ func NewBalanceFor(account Account, transactions []Transaction) Account {
 	)
 }
 
-func applyTransaction(a Account, transaction Transaction) Account {
+func ApplyTransaction(a Account, transaction Transaction) Account {
 	if transaction.From == a.Name {
 		a.Balance -= transaction.Sum
 	}

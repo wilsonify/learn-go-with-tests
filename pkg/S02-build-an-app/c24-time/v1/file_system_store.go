@@ -55,7 +55,7 @@ func FileSystemPlayerStoreFromFile(path string) (*FileSystemPlayerStore, func(),
 	return store, closeFunc, nil
 }
 
-func initialisePlayerDBFile(file *os.File) error {
+func InitialisePlayerDBFile(file *os.File) error {
 	file.Seek(0, 0)
 
 	info, err := file.Stat()

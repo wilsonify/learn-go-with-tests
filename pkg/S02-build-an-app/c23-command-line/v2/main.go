@@ -4,6 +4,6 @@ import "fmt"
 
 const dbFileName = "game.db.json"
 
-func main() {
+func Main() {
 	fmt.Println("Let's play poker")
 }

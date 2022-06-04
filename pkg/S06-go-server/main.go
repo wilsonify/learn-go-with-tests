@@ -16,7 +16,7 @@ import (
 	openapi "github.com/wilsonify/S06-go-server/go"
 )
 
-func main() {
+func Main() {
 	log.Printf("Server started")
 
 	DefaultApiService := openapi.NewDefaultApiService()

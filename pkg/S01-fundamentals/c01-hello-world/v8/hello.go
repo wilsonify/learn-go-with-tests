@@ -17,7 +17,7 @@ func Hello(name string, language string) string {
 	return greetingPrefix(language) + name
 }
 
-func greetingPrefix(language string) (prefix string) {
+func GreetingPrefix(language string) (prefix string) {
 	switch language {
 	case French:
 		prefix = frenchHelloPrefix

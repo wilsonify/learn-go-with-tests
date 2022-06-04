@@ -1,4 +1,4 @@
-package v1
+package numerals
 
 import "strings"
 
@@ -85,6 +85,6 @@ func (w windowedRoman) Symbols() (symbols [][]byte) {
 	return
 }
 
-func isSubtractive(symbol uint8) bool {
+func IsSubtractive(symbol uint8) bool {
 	return symbol == 'I' || symbol == 'X' || symbol == 'C'
 }
