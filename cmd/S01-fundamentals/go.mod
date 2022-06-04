@@ -1,4 +1,4 @@
-module github.com/wilsonify/S01-fundamentals
+module github.com/wilsonify/cmd-S01-fundamentals
 
 go 1.18
 
