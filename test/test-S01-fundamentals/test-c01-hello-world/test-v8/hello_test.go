@@ -1,7 +1,7 @@
 package main
 
 import (
-	hi "github.com/wilsonify/S01-fundamentals/c01-hello-world/v8"
+	hi "S01-fundamentals/c01-hello-world/v8"
 	"testing"
 )
 

@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	hs "github.com/wilsonify/S02-build-an-app/c20-http-server/v1"
+	hs "S02-build-an-app/c20-http-server/v1"
 )
 
 func main() {

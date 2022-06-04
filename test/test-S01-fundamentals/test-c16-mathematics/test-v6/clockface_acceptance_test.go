@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/wilsonify/S01-fundamentals/c16-mathematics/v6"
+	"
 )
 
 func TestSecondHandAtMidnight(t *testing.T) {

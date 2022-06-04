@@ -1,7 +1,7 @@
 package main
 
 import (
-	hs "github.com/wilsonify/S02-build-an-app/c20-http-server/v1"
+	hs "S02-build-an-app/c20-http-server/v1"
 	"net/http"
 	"net/http/httptest"
 	"testing"

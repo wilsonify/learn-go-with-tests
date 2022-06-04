@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/wilsonify/S04-go-echo-server/handlers"
+	"S04-go-echo-server/handlers"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"

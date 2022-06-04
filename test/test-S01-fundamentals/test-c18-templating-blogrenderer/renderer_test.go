@@ -2,10 +2,11 @@ package blogrenderer_test
 
 import (
 	"bytes"
-	approvals "github.com/approvals/go-approval-tests"
-	"github.com/wilsonify/S01-fundamentals/c18-templating"
 	"io"
 	"testing"
+
+	approvals "github.com/approvals/go-approval-tests"
+	"github.com/quii/learn-go-with-tests/blogrenderer"
 )
 
 func TestRender(t *testing.T) {

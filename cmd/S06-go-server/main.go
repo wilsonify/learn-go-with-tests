@@ -13,7 +13,7 @@ import (
 	"log"
 	"net/http"
 
-	openapi "github.com/wilsonify/S06-go-server/go"
+	openapi "S06-go-server/go"
 )
 
 func main() {

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/wilsonify/S04-go-echo-server/models"
+	"S04-go-echo-server/models"
 
 	"github.com/labstack/echo/v4"
 )

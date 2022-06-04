@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	. "github.com/wilsonify/S01-fundamentals/c16-mathematics/vFinal"
+	. "S01-fundamentals/c16-mathematics/vFinal"
 )
 
 func TestSecondsInRadians(t *testing.T) {
