@@ -18,6 +18,7 @@ func createTempFile(t testing.TB, initialData string) (*os.File, func()) {
 	tmpfile.Write([]byte(initialData))
 
 	removeFile := func() {
+		tmpfile.Close()
 		os.Remove(tmpfile.Name())
 	}
 
@@ -32,7 +33,7 @@ func TestFileSystemStore(t *testing.T) {
 			{"Name": "Chris", "Wins": 33}]`)
 		defer cleanDatabase()
 
-		store, err := NewFileSystemPlayerStore(database)
+		store, err := cl.NewFileSystemPlayerStore(database)
 
 		assertNoError(t, err)
 

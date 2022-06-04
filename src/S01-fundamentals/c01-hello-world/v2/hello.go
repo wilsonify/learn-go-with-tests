@@ -34,8 +34,3 @@ func here() string {
 
 	return fileName_head
 }
-
-func main() {
-	fmt.Println(Hello())
-	fmt.Println(here())
-}

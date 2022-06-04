@@ -1,6 +1,7 @@
-package poker
+package poker_test
 
 import (
+	"github.com/wilsonify/learn-go-with-tests/S02-build-an-app/c23-command-line/v1"
 	"io/ioutil"
 	"os"
 	"testing"
@@ -18,7 +19,6 @@ func createTempFile(t testing.TB, initialData string) (*os.File, func()) {
 	tmpfile.Write([]byte(initialData))
 
 	removeFile := func() {
-		tmpfile.Close()
 		os.Remove(tmpfile.Name())
 	}
 

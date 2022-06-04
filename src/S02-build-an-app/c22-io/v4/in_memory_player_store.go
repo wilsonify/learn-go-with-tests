@@ -1,4 +1,4 @@
-package main
+package inputoutput
 
 // NewInMemoryPlayerStore initialises an empty player store.
 func NewInMemoryPlayerStore() *InMemoryPlayerStore {
