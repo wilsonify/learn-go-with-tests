@@ -2,6 +2,7 @@ package httpserver
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"strings"
 )
@@ -41,4 +42,21 @@ func (p *PlayerServer) showScore(w http.ResponseWriter, player string) {
 func (p *PlayerServer) processWin(w http.ResponseWriter, player string) {
 	p.store.RecordWin(player)
 	w.WriteHeader(http.StatusAccepted)
+}
+
+// InMemoryPlayerStore collects data about players in memory.
+type InMemoryPlayerStore struct{}
+
+// RecordWin will record a player's win.
+func (i *InMemoryPlayerStore) RecordWin(name string) {
+}
+
+// GetPlayerScore retrieves scores for a given player.
+func (i *InMemoryPlayerStore) GetPlayerScore(name string) int {
+	return 123
+}
+
+func Mainly() {
+	server := &PlayerServer{&InMemoryPlayerStore{}}
+	log.Fatal(http.ListenAndServe(":5000", server))
 }

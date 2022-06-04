@@ -15,7 +15,7 @@ type FileSystemPlayerStore struct {
 // NewFileSystemPlayerStore creates a FileSystemPlayerStore initialising the store if needed.
 func NewFileSystemPlayerStore(file *os.File) (*FileSystemPlayerStore, error) {
 
-	err := initialisePlayerDBFile(file)
+	err := InitialisePlayerDBFile(file)
 
 	if err != nil {
 		return nil, fmt.Errorf("problem initialising player db file, %v", err)
@@ -33,7 +33,7 @@ func NewFileSystemPlayerStore(file *os.File) (*FileSystemPlayerStore, error) {
 	}, nil
 }
 
-func initialisePlayerDBFile(file *os.File) error {
+func InitialisePlayerDBFile(file *os.File) error {
 	file.Seek(0, 0)
 
 	info, err := file.Stat()
