@@ -7,8 +7,8 @@ import (
 func Walk(x interface{}, fn func(input string)) {
 	val := getValue(x)
 
-	walkValue := func(value reflect.Value) {
-		walk(value.Interface(), fn)
+	WalkValue := func(value reflect.Value) {
+		Walk(value.Interface(), fn)
 	}
 
 	switch val.Kind() {
@@ -16,24 +16,24 @@ func Walk(x interface{}, fn func(input string)) {
 		fn(val.String())
 	case reflect.Struct:
 		for i := 0; i < val.NumField(); i++ {
-			walkValue(val.Field(i))
+			WalkValue(val.Field(i))
 		}
 	case reflect.Slice, reflect.Array:
 		for i := 0; i < val.Len(); i++ {
-			walkValue(val.Index(i))
+			WalkValue(val.Index(i))
 		}
 	case reflect.Map:
 		for _, key := range val.MapKeys() {
-			walkValue(val.MapIndex(key))
+			WalkValue(val.MapIndex(key))
 		}
 	case reflect.Chan:
 		for v, ok := val.Recv(); ok; v, ok = val.Recv() {
-			walkValue(v)
+			WalkValue(v)
 		}
 	case reflect.Func:
 		valFnResult := val.Call(nil)
 		for _, res := range valFnResult {
-			walkValue(res)
+			WalkValue(res)
 		}
 	}
 }

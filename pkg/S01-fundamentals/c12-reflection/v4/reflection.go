@@ -14,7 +14,7 @@ func Walk(x interface{}, fn func(input string)) {
 		case reflect.String:
 			fn(field.String())
 		case reflect.Struct:
-			walk(field.Interface(), fn)
+			Walk(field.Interface(), fn)
 		}
 	}
 }

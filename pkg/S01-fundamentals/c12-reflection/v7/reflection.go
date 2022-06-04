@@ -22,7 +22,7 @@ func Walk(x interface{}, fn func(input string)) {
 	}
 
 	for i := 0; i < numberOfValues; i++ {
-		walk(getField(i).Interface(), fn)
+		Walk(getField(i).Interface(), fn)
 	}
 }
 
