@@ -1,4 +1,4 @@
-package blogrenderer
+package blogrenderering
 
 import (
 	"embed"
