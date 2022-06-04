@@ -7,9 +7,9 @@ import (
 // Racer compares the response times of a and b, returning the fastest one.
 func Racer(a, b string) (winner string) {
 	select {
-	case <-ping(a):
+	case <-Ping(a):
 		return a
-	case <-ping(b):
+	case <-Ping(b):
 		return b
 	}
 }

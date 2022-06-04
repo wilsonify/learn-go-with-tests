@@ -71,7 +71,7 @@ func assertStatus(t testing.TB, got, want int) {
 	}
 }
 
-func newGetScoreRequest(name string) *http.Request {
+func NewGetScoreRequest(name string) *http.Request {
 	req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", name), nil)
 	return req
 }

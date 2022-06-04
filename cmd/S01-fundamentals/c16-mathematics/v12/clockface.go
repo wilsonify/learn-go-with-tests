@@ -33,17 +33,17 @@ func minutesInRadians(t time.Time) float64 {
 		(math.Pi / (minutesInHalfClock / float64(t.Minute())))
 }
 
-func minuteHandPoint(t time.Time) Point {
+func MinuteHandPoint(t time.Time) Point {
 	return angleToPoint(minutesInRadians(t))
 }
 
-func hoursInRadians(t time.Time) float64 {
+func HoursInRadians(t time.Time) float64 {
 	return (minutesInRadians(t) / hoursInClock) +
 		(math.Pi / (hoursInHalfClock / float64(t.Hour()%hoursInClock)))
 }
 
-func hourHandPoint(t time.Time) Point {
-	return angleToPoint(hoursInRadians(t))
+func HourHandPoint(t time.Time) Point {
+	return angleToPoint(HoursInRadians(t))
 }
 
 func angleToPoint(angle float64) Point {

@@ -5,7 +5,7 @@ import (
 )
 
 func Walk(x interface{}, fn func(input string)) {
-	val := getValue(x)
+	val := GetValue(x)
 
 	for i := 0; i < val.NumField(); i++ {
 		field := val.Field(i)

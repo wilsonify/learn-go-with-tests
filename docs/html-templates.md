@@ -956,7 +956,7 @@ func NewPostRenderer() (*PostRenderer, error) {
 }
 
 func (r *PostRenderer) Render(w io.Writer, p Post) error {
-	return r.templ.ExecuteTemplate(w, "blog.gohtml", newPostVM(p, r))
+	return r.templ.ExecuteTemplate(w, "blog.gohtml", NewPostVM(p, r))
 }
 
 func (r *PostRenderer) RenderIndex(w io.Writer, posts []Post) error {
@@ -968,7 +968,7 @@ type postViewModel struct {
 	HTMLBody template.HTML
 }
 
-func newPostVM(p Post, r *PostRenderer) postViewModel {
+func NewPostVM(p Post, r *PostRenderer) postViewModel {
 	vm := postViewModel{Post: p}
 	vm.HTMLBody = template.HTML(markdown.ToHTML([]byte(p.Body), r.mdParser, nil))
 	return vm

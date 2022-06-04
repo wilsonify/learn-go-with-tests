@@ -22,7 +22,7 @@ const (
 	tagsSeparator        = "Tags: "
 )
 
-func newPost(postBody io.Reader) (Post, error) {
+func NewPost(postBody io.Reader) (Post, error) {
 	scanner := bufio.NewScanner(postBody)
 
 	readMetaLine := func(tagName string) string {

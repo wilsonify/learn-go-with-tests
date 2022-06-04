@@ -5,7 +5,7 @@ import (
 )
 
 func Walk(x interface{}, fn func(input string)) {
-	val := getValue(x)
+	val := GetValue(x)
 
 	numberOfValues := 0
 	var getField func(int) reflect.Value

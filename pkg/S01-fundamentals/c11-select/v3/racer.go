@@ -16,9 +16,9 @@ func Racer(a, b string) (winner string, error error) {
 // ConfigurableRacer compares the response times of a and b, returning the fastest one.
 func ConfigurableRacer(a, b string, timeout time.Duration) (winner string, error error) {
 	select {
-	case <-ping(a):
+	case <-Ping(a):
 		return a, nil
-	case <-ping(b):
+	case <-Ping(b):
 		return b, nil
 	case <-time.After(timeout):
 		return "", fmt.Errorf("timed out waiting for %s and %s", a, b)

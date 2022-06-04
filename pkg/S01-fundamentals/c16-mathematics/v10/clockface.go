@@ -3,8 +3,10 @@ package clockface
 import (
 	"fmt"
 	"io"
-	"os"
+	"math"
 	"time"
+
+	"os"
 )
 
 func Mainly() {
@@ -13,9 +15,8 @@ func Mainly() {
 }
 
 const (
-	secondHandLength = 90
-	minuteHandLength = 80
-	hourHandLength   = 50
+	SecondHandLength = 90
+	MinuteHandLength = 80
 	clockCentreX     = 150
 	clockCentreY     = 150
 )
@@ -24,24 +25,18 @@ const (
 func SVGWriter(w io.Writer, t time.Time) {
 	io.WriteString(w, svgStart)
 	io.WriteString(w, bezel)
-	secondHand(w, t)
-	minuteHand(w, t)
-	hourHand(w, t)
+	SecondHand(w, t)
+	MinuteHand(w, t)
 	io.WriteString(w, svgEnd)
 }
 
 func SecondHand(w io.Writer, t time.Time) {
-	p := makeHand(secondHandPoint(t), secondHandLength)
+	p := MakeHand(SecondHandPoint(t), SecondHandLength)
 	fmt.Fprintf(w, `<line x1="150" y1="150" x2="%.3f" y2="%.3f" style="fill:none;stroke:#f00;stroke-width:3px;"/>`, p.X, p.Y)
 }
 
 func MinuteHand(w io.Writer, t time.Time) {
-	p := makeHand(minuteHandPoint(t), minuteHandLength)
-	fmt.Fprintf(w, `<line x1="150" y1="150" x2="%.3f" y2="%.3f" style="fill:none;stroke:#000;stroke-width:3px;"/>`, p.X, p.Y)
-}
-
-func HourHand(w io.Writer, t time.Time) {
-	p := makeHand(hourHandPoint(t), hourHandLength)
+	p := MakeHand(MinuteHandPoint(t), MinuteHandLength)
 	fmt.Fprintf(w, `<line x1="150" y1="150" x2="%.3f" y2="%.3f" style="fill:none;stroke:#000;stroke-width:3px;"/>`, p.X, p.Y)
 }
 
@@ -62,3 +57,38 @@ const svgStart = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 const bezel = `<circle cx="150" cy="150" r="100" style="fill:#fff;stroke:#000;stroke-width:5px;"/>`
 
 const svgEnd = `</svg>`
+
+// A Point represents a two dimensional Cartesian coordinate.
+type Point struct {
+	X float64
+	Y float64
+}
+
+func SecondsInRadians(t time.Time) float64 {
+	return (math.Pi / (30 / float64(t.Second())))
+}
+
+func SecondHandPoint(t time.Time) Point {
+	return AngleToPoint(SecondsInRadians(t))
+}
+
+func MinutesInRadians(t time.Time) float64 {
+	return (SecondsInRadians(t) / 60) +
+		(math.Pi / (30 / float64(t.Minute())))
+}
+
+func MinuteHandPoint(t time.Time) Point {
+	return AngleToPoint(MinutesInRadians(t))
+}
+
+func HoursInRadians(t time.Time) float64 {
+	return (MinutesInRadians(t) / 12) +
+		(math.Pi / (6 / float64(t.Hour()%12)))
+}
+
+func AngleToPoint(angle float64) Point {
+	x := math.Sin(angle)
+	y := math.Cos(angle)
+
+	return Point{x, y}
+}

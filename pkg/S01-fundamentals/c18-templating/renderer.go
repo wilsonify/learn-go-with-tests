@@ -2,10 +2,12 @@ package blogrenderer
 
 import (
 	"embed"
-	"github.com/gomarkdown/markdown"
-	"github.com/gomarkdown/markdown/parser"
 	"html/template"
 	"io"
+	"strings"
+
+	"github.com/gomarkdown/markdown"
+	"github.com/gomarkdown/markdown/parser"
 )
 
 var (
@@ -34,7 +36,7 @@ func NewPostRenderer() (*PostRenderer, error) {
 
 // Render renders post into HTML
 func (r *PostRenderer) Render(w io.Writer, p Post) error {
-	return r.templ.ExecuteTemplate(w, "blog.gohtml", newPostVM(p, r))
+	return r.templ.ExecuteTemplate(w, "blog.gohtml", NewPostVM(p, r))
 }
 
 // RenderIndex creates an HTML index page given a collection of posts
@@ -47,8 +49,19 @@ type postViewModel struct {
 	HTMLBody template.HTML
 }
 
-func newPostVM(p Post, r *PostRenderer) postViewModel {
+func NewPostVM(p Post, r *PostRenderer) postViewModel {
 	vm := postViewModel{Post: p}
 	vm.HTMLBody = template.HTML(markdown.ToHTML([]byte(p.Body), r.mdParser, nil))
 	return vm
+}
+
+// Post is a representation of a post
+type Post struct {
+	Title, Description, Body string
+	Tags                     []string
+}
+
+// SanitisedTitle returns the title of the post with spaces replaced by dashes for pleasant URLs
+func (p Post) SanitisedTitle() string {
+	return strings.ToLower(strings.Replace(p.Title, " ", "-", -1))
 }

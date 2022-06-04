@@ -1,9 +1,10 @@
 package poker
 
 import (
-	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/websocket"
 )
 
 type playerServerWS struct {
@@ -20,7 +21,7 @@ func (w *playerServerWS) Write(p []byte) (n int, err error) {
 	return len(p), nil
 }
 
-func newPlayerServerWS(w http.ResponseWriter, r *http.Request) *playerServerWS {
+func NewPlayerServerWS(w http.ResponseWriter, r *http.Request) *playerServerWS {
 	conn, err := wsUpgrader.Upgrade(w, r, nil)
 
 	if err != nil {

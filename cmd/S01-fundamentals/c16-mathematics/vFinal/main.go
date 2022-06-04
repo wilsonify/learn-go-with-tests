@@ -20,8 +20,8 @@ func main() {
 
 const (
 	secondHandLength = 90
-	minuteHandLength = 80
-	hourHandLength   = 50
+	MinuteHandLength = 80
+	HourHandLength   = 50
 	clockCentreX     = 150
 	clockCentreY     = 150
 )
@@ -31,27 +31,27 @@ func Write(w io.Writer, t time.Time) {
 	io.WriteString(w, svgStart)
 	io.WriteString(w, bezel)
 	secondHand(w, t)
-	minuteHand(w, t)
-	hourHand(w, t)
+	MinuteHand(w, t)
+	HourHand(w, t)
 	io.WriteString(w, svgEnd)
 }
 
 func secondHand(w io.Writer, t time.Time) {
-	p := makeHand(secondHandPoint(t), secondHandLength)
+	p := MakeHand(secondHandPoint(t), secondHandLength)
 	fmt.Fprintf(w, `<line x1="150" y1="150" x2="%.3f" y2="%.3f" style="fill:none;stroke:#f00;stroke-width:3px;"/>`, p.X, p.Y)
 }
 
-func minuteHand(w io.Writer, t time.Time) {
-	p := makeHand(minuteHandPoint(t), minuteHandLength)
+func MinuteHand(w io.Writer, t time.Time) {
+	p := MakeHand(MinuteHandPoint(t), MinuteHandLength)
 	fmt.Fprintf(w, `<line x1="150" y1="150" x2="%.3f" y2="%.3f" style="fill:none;stroke:#000;stroke-width:3px;"/>`, p.X, p.Y)
 }
 
-func hourHand(w io.Writer, t time.Time) {
-	p := makeHand(hourHandPoint(t), hourHandLength)
+func HourHand(w io.Writer, t time.Time) {
+	p := MakeHand(HourHandPoint(t), HourHandLength)
 	fmt.Fprintf(w, `<line x1="150" y1="150" x2="%.3f" y2="%.3f" style="fill:none;stroke:#000;stroke-width:3px;"/>`, p.X, p.Y)
 }
 
-func makeHand(p Point, length float64) Point {
+func MakeHand(p Point, length float64) Point {
 	p = Point{X: p.X * length, Y: p.Y * length}
 	p = Point{X: p.X, Y: -p.Y}
 	return Point{X: p.X + clockCentreX, Y: p.Y + clockCentreY}
@@ -93,17 +93,17 @@ func minutesInRadians(t time.Time) float64 {
 		(math.Pi / (minutesInHalfClock / float64(t.Minute())))
 }
 
-func minuteHandPoint(t time.Time) Point {
+func MinuteHandPoint(t time.Time) Point {
 	return angleToPoint(minutesInRadians(t))
 }
 
-func hoursInRadians(t time.Time) float64 {
+func HoursInRadians(t time.Time) float64 {
 	return (minutesInRadians(t) / hoursInClock) +
 		(math.Pi / (hoursInHalfClock / float64(t.Hour()%hoursInClock)))
 }
 
-func hourHandPoint(t time.Time) Point {
-	return angleToPoint(hoursInRadians(t))
+func HourHandPoint(t time.Time) Point {
+	return angleToPoint(HoursInRadians(t))
 }
 
 func angleToPoint(angle float64) Point {

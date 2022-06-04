@@ -397,10 +397,10 @@ func getPost(fileSystem fs.FS, f fs.DirEntry) (Post, error) {
 		return Post{}, err
 	}
 	defer postFile.Close()
-	return newPost(postFile)
+	return NewPost(postFile)
 }
 
-func newPost(postFile fs.File) (Post, error) {
+func NewPost(postFile fs.File) (Post, error) {
 	postData, err := io.ReadAll(postFile)
 	if err != nil {
 		return Post{}, err
@@ -413,12 +413,12 @@ func newPost(postFile fs.File) (Post, error) {
 
 When you refactor out new functions or methods, take care and think about the arguments. You're designing here, and are free to think deeply about what is appropriate because you have passing tests. Think about coupling and cohesion. In this case you should ask yourself:
 
-> Does `newPost` have to be coupled to an `fs.File` ? Do we use all the methods and data from this type? What do we _really_ need?
+> Does `NewPost` have to be coupled to an `fs.File` ? Do we use all the methods and data from this type? What do we _really_ need?
 
 In our case we only use it as an argument to `io.ReadAll` which needs an `io.Reader`. So we should loosen the coupling in our function and ask for an `io.Reader`.
 
 ```go
-func newPost(postFile io.Reader) (Post, error) {
+func NewPost(postFile io.Reader) (Post, error) {
 	postData, err := io.ReadAll(postFile)
 	if err != nil {
 		return Post{}, err
@@ -454,10 +454,10 @@ func getPost(fileSystem fs.FS, fileName string) (Post, error) {
 		return Post{}, err
 	}
 	defer postFile.Close()
-	return newPost(postFile)
+	return NewPost(postFile)
 }
 
-func newPost(postFile io.Reader) (Post, error) {
+func NewPost(postFile io.Reader) (Post, error) {
 	postData, err := io.ReadAll(postFile)
 	if err != nil {
 		return Post{}, err
@@ -468,7 +468,7 @@ func newPost(postFile io.Reader) (Post, error) {
 }
 ```
 
-From now on, most of our efforts can be neatly contained within `newPost`. The concerns of opening and iterating over files are done, and now we can focus on extracting the data for our `Post` type. Whilst not technically necessary, files are a nice way to logically group related things together, so I moved the `Post` type and `newPost` into a new `post.go` file.
+From now on, most of our efforts can be neatly contained within `NewPost`. The concerns of opening and iterating over files are done, and now we can focus on extracting the data for our `Post` type. Whilst not technically necessary, files are a nice way to logically group related things together, so I moved the `Post` type and `NewPost` into a new `post.go` file.
 
 ### Test helper
 
@@ -546,7 +546,7 @@ The standard library has a handy library for helping you scan through data, line
 > Scanner provides a convenient interface for reading data such as a file of newline-delimited lines of text.
 
 ```go
-func newPost(postFile io.Reader) (Post, error) {
+func NewPost(postFile io.Reader) (Post, error) {
 	scanner := bufio.NewScanner(postFile)
 
 	scanner.Scan()
@@ -570,7 +570,7 @@ This function could never return an `error`. It would be tempting at this point 
 We have repetition around scanning a line and then reading the text. We know we're going to do this operation at least one more time, it's a simple refactor to DRY up so let's start with that.
 
 ```go
-func newPost(postFile io.Reader) (Post, error) {
+func NewPost(postFile io.Reader) (Post, error) {
 	scanner := bufio.NewScanner(postFile)
 
 	readLine := func() string {
@@ -595,7 +595,7 @@ const (
 	descriptionSeparator = "Description: "
 )
 
-func newPost(postFile io.Reader) (Post, error) {
+func NewPost(postFile io.Reader) (Post, error) {
 	scanner := bufio.NewScanner(postFile)
 
 	readLine := func() string {
@@ -613,7 +613,7 @@ func newPost(postFile io.Reader) (Post, error) {
 Now that I'm staring at the code with my creative refactoring mind, I'd like to try making our readLine function take care of removing the tag. There's also a more readable way of trimming a prefix from a string with the function `strings.TrimPrefix`.
 
 ```go
-func newPost(postBody io.Reader) (Post, error) {
+func NewPost(postBody io.Reader) (Post, error) {
 	scanner := bufio.NewScanner(postBody)
 
 	readMetaLine := func(tagName string) string {
@@ -663,7 +663,7 @@ const (
 	tagsSeparator        = "Tags: "
 )
 
-func newPost(postBody io.Reader) (Post, error) {
+func NewPost(postBody io.Reader) (Post, error) {
 	scanner := bufio.NewScanner(postBody)
 
 	readMetaLine := func(tagName string) string {
@@ -755,7 +755,7 @@ Add `Body` to `Post` and the test should fail.
 2. Keep scanning until there's nothing left to scan.
 
 ```go
-func newPost(postBody io.Reader) (Post, error) {
+func NewPost(postBody io.Reader) (Post, error) {
 	scanner := bufio.NewScanner(postBody)
 
 	readMetaLine := func(tagName string) string {
@@ -790,10 +790,10 @@ func newPost(postBody io.Reader) (Post, error) {
 
 ## Refactor
 
-Encapsulating the idea of getting the rest of the data into a function will help future readers quickly understand _what_ is happening in `newPost`, without having to concern themselves with implementation specifics.
+Encapsulating the idea of getting the rest of the data into a function will help future readers quickly understand _what_ is happening in `NewPost`, without having to concern themselves with implementation specifics.
 
 ```go
-func newPost(postBody io.Reader) (Post, error) {
+func NewPost(postBody io.Reader) (Post, error) {
 	scanner := bufio.NewScanner(postBody)
 
 	readMetaLine := func(tagName string) string {

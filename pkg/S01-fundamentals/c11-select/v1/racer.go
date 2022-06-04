@@ -7,8 +7,8 @@ import (
 
 // Racer compares the response times of a and b, returning the fastest one.
 func Racer(a, b string) (winner string) {
-	aDuration := measureResponseTime(a)
-	bDuration := measureResponseTime(b)
+	aDuration := MeasureResponseTime(a)
+	bDuration := MeasureResponseTime(b)
 
 	if aDuration < bDuration {
 		return a
