@@ -1,7 +1,7 @@
 package main
 
 import (
-	hs "github.com/wilsonify/learn-go-with-tests/S02-build-an-app/c20-http-server/v5"
+	hs "github.com/wilsonify/S02-build-an-app/c20-http-server/v5"
 	"net/http"
 	"net/http/httptest"
 	"testing"

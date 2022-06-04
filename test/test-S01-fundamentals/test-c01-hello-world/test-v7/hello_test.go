@@ -1,7 +1,7 @@
 package main
 
 import (
-	hello "github.com/wilsonify/learn-go-with-tests/S01-fundamentals/c01-hello-world/v7"
+	hello "github.com/wilsonify/S01-fundamentals/c01-hello-world/v7"
 	"testing"
 )
 

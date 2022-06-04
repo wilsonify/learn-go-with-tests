@@ -17,6 +17,6 @@ func Countdown(out io.Writer) {
 	fmt.Fprint(out, finalWord)
 }
 
-func main() {
+func Mainly() {
 	Countdown(os.Stdout)
 }

@@ -1,4 +1,4 @@
-module github.com/wilsonify/learn-go-with-tests/S02-build-an-app
+module github.com/wilsonify/S02-build-an-app
 
 go 1.18
 

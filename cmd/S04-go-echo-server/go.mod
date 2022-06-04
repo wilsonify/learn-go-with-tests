@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/labstack/echo/v4 v4.7.2
-	github.com/wilsonify/learn-go-with-tests/S04-go-echo-server v0.0.0-00010101000000-000000000000
+	github.com/wilsonify/S04-go-echo-server v0.0.0-00010101000000-000000000000
 )
 
 require (
@@ -21,4 +21,4 @@ require (
 	golang.org/x/time v0.0.0-20201208040808-7e3f01d25324 // indirect
 )
 
-replace github.com/wilsonify/learn-go-with-tests/S04-go-echo-server => ./
+replace github.com/wilsonify/S04-go-echo-server => ./

@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/wilsonify/learn-go-with-tests/S01-fundamentals/c16-mathematics/v11"
+	"github.com/wilsonify/S01-fundamentals/c16-mathematics/v11"
 )
 
 type SVG struct {

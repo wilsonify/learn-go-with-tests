@@ -7,6 +7,6 @@ func Hello(name string) string {
 	return "Hello, " + name
 }
 
-func main() {
+func Mainly() {
 	fmt.Println(Hello("world"))
 }

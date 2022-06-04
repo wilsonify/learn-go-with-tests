@@ -7,4 +7,4 @@ require (
 	github.com/gomarkdown/markdown v0.0.0-20220510115730-2372b9aa33e5
 )
 
-replace github.com/wilsonify/learn-go-with-tests/S01-fundamentals => ./
+replace github.com/wilsonify/S01-fundamentals => ./

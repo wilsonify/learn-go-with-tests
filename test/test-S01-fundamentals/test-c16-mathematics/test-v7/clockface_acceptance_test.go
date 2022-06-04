@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/wilsonify/learn-go-with-tests/S01-fundamentals/c16-mathematics/v7"
+	"github.com/wilsonify/S01-fundamentals/c16-mathematics/v7"
 )
 
 func TestSVGWriterAtMidnight(t *testing.T) {

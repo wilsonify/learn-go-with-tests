@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func main() {
+func Mainly() {
 	t := time.Now()
 	SVGWriter(os.Stdout, t)
 }

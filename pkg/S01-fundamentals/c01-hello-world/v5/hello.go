@@ -12,6 +12,6 @@ func Hello(name string) string {
 	return englishHelloPrefix + name
 }
 
-func main() {
+func Mainly() {
 	fmt.Println(Hello("world"))
 }

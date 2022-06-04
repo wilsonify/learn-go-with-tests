@@ -11,6 +11,6 @@ func Countdown(out io.Writer) {
 	fmt.Fprint(out, "3")
 }
 
-func main() {
+func Mainly() {
 	Countdown(os.Stdout)
 }

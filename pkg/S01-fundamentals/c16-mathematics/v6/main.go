@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func main() {
+func Mainly() {
 	t := time.Now()
 	sh := SecondHand(t)
 	io.WriteString(os.Stdout, svgStart)

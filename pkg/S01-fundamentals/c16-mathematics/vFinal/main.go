@@ -13,7 +13,7 @@ func secondHandPoint(t time.Time) Point {
 	return angleToPoint(secondsInRadians(t))
 }
 
-func main() {
+func Mainly() {
 	t := time.Now()
 	Write(os.Stdout, t)
 }

@@ -1,7 +1,7 @@
 package poker_test
 
 import (
-	"github.com/wilsonify/learn-go-with-tests/S02-build-an-app/c23-command-line/v1"
+	"github.com/wilsonify/S02-build-an-app/c23-command-line/v1"
 	"io/ioutil"
 	"os"
 	"testing"
