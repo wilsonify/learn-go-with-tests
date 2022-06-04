@@ -3,12 +3,12 @@ package main
 import (
 	"testing"
 
-	hello "learn.go/S01-fundamentals/c01-hello-world/v1"
+	hi "learn.go/S01-fundamentals/c01-hello-world/v1"
 )
 
 func TestHello(t *testing.T) {
 
-	got := hello.Hello()
+	got := hi.Hello()
 	want := "Hello, world"
 
 	if got != want {

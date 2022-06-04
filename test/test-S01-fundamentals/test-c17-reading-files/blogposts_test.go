@@ -1,7 +1,7 @@
 package blogposts_test
 
 import (
-	blogposts "S01-fundamentals/c17-reading-files"
+	blogposts "learn.go/S01-fundamentals/c17-reading-files/v1"
 	"reflect"
 	"testing"
 	"testing/fstest"

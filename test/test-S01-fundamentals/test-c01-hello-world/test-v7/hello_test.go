@@ -1,7 +1,7 @@
 package main
 
 import (
-	hello "S01-fundamentals/c01-hello-world/v7"
+	hello "learn.go/S01-fundamentals/c01-hello-world/v7"
 	"testing"
 )
 

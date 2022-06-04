@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	. "S01-fundamentals/c16-mathematics/vFinal"
+	. "learn.go/S01-fundamentals/c16-mathematics/vFinal"
 )
 
 func TestSecondsInRadians(t *testing.T) {

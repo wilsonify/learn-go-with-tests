@@ -1,7 +1,7 @@
 package main
 
 import (
-	hs "S02-build-an-app/c20-http-server/v1"
+	hs "learn.go/S02-build-an-app/c20-http-server/v1"
 	"net/http"
 	"net/http/httptest"
 	"testing"
