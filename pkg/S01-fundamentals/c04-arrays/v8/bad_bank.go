@@ -1,4 +1,4 @@
-package main
+package arrays
 
 type Transaction struct {
 	From string

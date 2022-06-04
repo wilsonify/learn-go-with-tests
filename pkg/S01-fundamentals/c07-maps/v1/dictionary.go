@@ -1,4 +1,4 @@
-package main
+package pointers
 
 // Dictionary store definitions to words.
 type Dictionary map[string]string

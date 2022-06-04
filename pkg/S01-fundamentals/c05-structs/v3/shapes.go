@@ -1,4 +1,4 @@
-package main
+package structs
 
 // Rectangle has the dimensions of a rectangle.
 type Rectangle struct {

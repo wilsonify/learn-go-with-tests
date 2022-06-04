@@ -1,4 +1,4 @@
-package main
+package maps
 
 const (
 	// ErrNotFound means the definition could not be found for the given word
