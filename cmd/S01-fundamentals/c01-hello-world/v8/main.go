@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	hi "S01-fundamentals/c01-hello-world/v8"
+	hi "learn.go/S01-fundamentals/c01-hello-world/v8"
 )
 
 func main() {

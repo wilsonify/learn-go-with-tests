@@ -15,7 +15,7 @@ type PlayerStore interface {
 
 // PlayerServer is a HTTP interface for player information.
 type PlayerServer struct {
-	store PlayerStore
+	StoreThePlayer PlayerStore
 }
 
 func (p *PlayerServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -30,7 +30,7 @@ func (p *PlayerServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func (p *PlayerServer) showScore(w http.ResponseWriter, player string) {
-	score := p.store.GetPlayerScore(player)
+	score := p.StoreThePlayer.GetPlayerScore(player)
 
 	if score == 0 {
 		w.WriteHeader(http.StatusNotFound)
@@ -40,7 +40,7 @@ func (p *PlayerServer) showScore(w http.ResponseWriter, player string) {
 }
 
 func (p *PlayerServer) processWin(w http.ResponseWriter, player string) {
-	p.store.RecordWin(player)
+	p.StoreThePlayer.RecordWin(player)
 	w.WriteHeader(http.StatusAccepted)
 }
 

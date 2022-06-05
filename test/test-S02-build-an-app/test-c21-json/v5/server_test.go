@@ -163,7 +163,7 @@ func NewLeagueRequest() *http.Request {
 	return req
 }
 
-func marshal.NewGetScoreRequest(name string) *http.Request {
+func NewGetScoreRequest(name string) *http.Request {
 	req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", name), nil)
 	return req
 }
