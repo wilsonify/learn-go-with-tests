@@ -1,15 +1,16 @@
-package poker
+package poker_test
 
 import (
 	"io/ioutil"
 	"testing"
+	poker "learn.go/S02-build-an-app/c24-time/v1"
 )
 
 func TestTape_Write(t *testing.T) {
-	file, clean := createTempFile(t, "12345")
+	file, clean := CreateTempFile(t, "12345")
 	defer clean()
 
-	Tape := &Tape{file}
+	Tape := &poker.Tape{file}
 
 	Tape.Write([]byte("abc"))
 

@@ -5,6 +5,8 @@ import (
 
 	"testing"
 	"time"
+
+	poker "learn.go/S02-build-an-app/c24-time/v2"
 )
 
 func TestGame_Start(t *testing.T) {
@@ -50,12 +52,12 @@ func TestGame_Start(t *testing.T) {
 }
 
 func TestGame_Finish(t *testing.T) {
-	store := &poker.StubPlayerStore{}
+	store := &StubPlayerStore{}
 	game := poker.NewTexasHoldem(dummyBlindAlerter, store)
 	winner := "Ruth"
 
 	game.Finish(winner)
-	poker.AssertPlayerWin(t, store, winner)
+	AssertPlayerWin(t, store, winner)
 }
 
 func checkSchedulingCases(cases []poker.ScheduledAlert, t *testing.T, blindAlerter *poker.SpyBlindAlerter) {

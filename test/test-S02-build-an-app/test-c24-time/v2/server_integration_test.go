@@ -1,4 +1,4 @@
-package poker
+package poker_test
 
 import (
 	"net/http"
@@ -7,7 +7,7 @@ import (
 )
 
 func TestRecordingWinsAndRetrievingThem(t *testing.T) {
-	database, cleanDatabase := createTempFile(t, `[]`)
+	database, cleanDatabase := CreateTempFile(t, `[]`)
 	defer cleanDatabase()
 	store, err := NewFileSystemPlayerStore(database)
 
@@ -22,7 +22,7 @@ func TestRecordingWinsAndRetrievingThem(t *testing.T) {
 
 	t.Run("get score", func(t *testing.T) {
 		response := httptest.NewRecorder()
-		server.ServeHTTP(response, newGetScoreRequest(player))
+		server.ServeHTTP(response, NewGetScoreRequest(player))
 		assertStatus(t, response.Code, http.StatusOK)
 
 		assertResponseBody(t, response.Body.String(), "3")

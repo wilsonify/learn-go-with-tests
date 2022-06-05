@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io"
 	"net/http"
 	"net/http/httptest"
@@ -155,21 +154,6 @@ func assertStatus(t testing.TB, got, want int) {
 	if got != want {
 		t.Errorf("did not get correct status, got %d, want %d", got, want)
 	}
-}
-
-func NewLeagueRequest() *http.Request {
-	req, _ := http.NewRequest(http.MethodGet, "/league", nil)
-	return req
-}
-
-func NewGetScoreRequest(name string) *http.Request {
-	req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", name), nil)
-	return req
-}
-
-func NewPostWinRequest(name string) *http.Request {
-	req, _ := http.NewRequest(http.MethodPost, fmt.Sprintf("/players/%s", name), nil)
-	return req
 }
 
 func assertResponseBody(t testing.TB, got, want string) {

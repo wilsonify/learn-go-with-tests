@@ -179,13 +179,13 @@ func (p *PlayerServer) processWin(w http.ResponseWriter, player string) {
 }
 
 type Tape struct {
-	file *os.File
+	FileSeeker *os.File
 }
 
 func (t *Tape) Write(p []byte) (n int, err error) {
-	t.file.Truncate(0)
-	t.file.Seek(0, 0)
-	return t.file.Write(p)
+	t.FileSeeker.Truncate(0)
+	t.FileSeeker.Seek(0, 0)
+	return t.FileSeeker.Write(p)
 }
 
 func Mainly() {
@@ -204,4 +204,18 @@ func Mainly() {
 	server := NewPlayerServer(store)
 
 	log.Fatal(http.ListenAndServe(":5000", server))
+}
+func NewLeagueRequest() *http.Request {
+	req, _ := http.NewRequest(http.MethodGet, "/league", nil)
+	return req
+}
+
+func NewGetScoreRequest(name string) *http.Request {
+	req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", name), nil)
+	return req
+}
+
+func NewPostWinRequest(name string) *http.Request {
+	req, _ := http.NewRequest(http.MethodPost, fmt.Sprintf("/players/%s", name), nil)
+	return req
 }

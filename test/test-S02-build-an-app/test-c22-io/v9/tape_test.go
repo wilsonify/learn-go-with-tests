@@ -3,13 +3,15 @@ package main
 import (
 	"io/ioutil"
 	"testing"
+
+	inputoutput "learn.go/S02-build-an-app/c22-io/v9"
 )
 
 func TestTape_Write(t *testing.T) {
-	file, clean := createTempFile(t, "12345")
+	file, clean := CreateTempFile(t, "12345")
 	defer clean()
 
-	Tape := &Tape{file}
+	Tape := &inputoutput.Tape{file}
 
 	Tape.Write([]byte("abc"))
 

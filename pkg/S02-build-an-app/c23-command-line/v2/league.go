@@ -115,12 +115,12 @@ func (f *FileSystemPlayerStore) RecordWin(name string) {
 
 // CLI helps players through a game of poker.
 type CLI struct {
-	playerStore PlayerStore
+	StoreThePlayer PlayerStore
 }
 
 // PlayPoker starts the game.
 func (cli *CLI) PlayPoker() {
-	cli.playerStore.RecordWin("Cleo")
+	cli.StoreThePlayer.RecordWin("Cleo")
 }
 
 // PlayerStore stores score information about players.
@@ -191,13 +191,13 @@ func (p *PlayerServer) processWin(w http.ResponseWriter, player string) {
 }
 
 type Tape struct {
-	file *os.File
+	FileSeeker *os.File
 }
 
 func (t *Tape) Write(p []byte) (n int, err error) {
-	t.file.Truncate(0)
-	t.file.Seek(0, 0)
-	return t.file.Write(p)
+	t.FileSeeker.Truncate(0)
+	t.FileSeeker.Seek(0, 0)
+	return t.FileSeeker.Write(p)
 }
 
 const dbFileName = "game.db.json"

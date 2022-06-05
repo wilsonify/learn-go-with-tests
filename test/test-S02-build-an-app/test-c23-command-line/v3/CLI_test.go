@@ -4,28 +4,30 @@ import (
 	"io"
 	"strings"
 	"testing"
+	poker "learn.go/S02-build-an-app/c23-command-line/v3"
+
 )
 
 func TestCLI(t *testing.T) {
 
 	t.Run("record chris win from user input", func(t *testing.T) {
 		in := strings.NewReader("Chris wins\n")
-		playerStore := &poker.StubPlayerStore{}
+		playerStore := &StubPlayerStore{}
 
 		cli := poker.NewCLI(playerStore, in)
 		cli.PlayPoker()
 
-		poker.AssertPlayerWin(t, playerStore, "Chris")
+		AssertPlayerWin(t, playerStore, "Chris")
 	})
 
 	t.Run("record cleo win from user input", func(t *testing.T) {
 		in := strings.NewReader("Cleo wins\n")
-		playerStore := &poker.StubPlayerStore{}
+		playerStore := &StubPlayerStore{}
 
 		cli := poker.NewCLI(playerStore, in)
 		cli.PlayPoker()
 
-		poker.AssertPlayerWin(t, playerStore, "Cleo")
+		AssertPlayerWin(t, playerStore, "Cleo")
 	})
 
 	t.Run("do not read beyond the first newline", func(t *testing.T) {
@@ -34,7 +36,7 @@ func TestCLI(t *testing.T) {
 			strings.NewReader("Chris wins\n hello there"),
 		}
 
-		playerStore := &poker.StubPlayerStore{}
+		playerStore := &StubPlayerStore{}
 
 		cli := poker.NewCLI(playerStore, in)
 		cli.PlayPoker()

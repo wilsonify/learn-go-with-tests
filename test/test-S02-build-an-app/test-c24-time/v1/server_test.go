@@ -1,4 +1,4 @@
-package poker
+package poker_test
 
 import (
 	"fmt"
@@ -21,7 +21,7 @@ func TestGETPlayers(t *testing.T) {
 	server := NewPlayerServer(&store)
 
 	t.Run("returns Pepper's score", func(t *testing.T) {
-		request := newGetScoreRequest("Pepper")
+		request := NewGetScoreRequest("Pepper")
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
@@ -31,7 +31,7 @@ func TestGETPlayers(t *testing.T) {
 	})
 
 	t.Run("returns Floyd's score", func(t *testing.T) {
-		request := newGetScoreRequest("Floyd")
+		request := NewGetScoreRequest("Floyd")
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
@@ -41,7 +41,7 @@ func TestGETPlayers(t *testing.T) {
 	})
 
 	t.Run("returns 404 on missing players", func(t *testing.T) {
-		request := newGetScoreRequest("Apollo")
+		request := NewGetScoreRequest("Apollo")
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)

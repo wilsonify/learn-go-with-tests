@@ -7,6 +7,8 @@ import (
 	"strings"
 	"testing"
 	"time"
+
+	poker "learn.go/S02-build-an-app/c24-time/v1"
 )
 
 type scheduledAlert struct {
@@ -32,7 +34,7 @@ func TestCLI(t *testing.T) {
 
 	t.Run("it schedules printing of blind values", func(t *testing.T) {
 		in := strings.NewReader("Chris wins\n")
-		playerStore := &poker.StubPlayerStore{}
+		playerStore := &StubPlayerStore{}
 		blindAlerter := &SpyBlindAlerter{}
 
 		cli := poker.NewCLI(playerStore, in, blindAlerter)
@@ -67,22 +69,22 @@ func TestCLI(t *testing.T) {
 
 	t.Run("record chris win from user input", func(t *testing.T) {
 		in := strings.NewReader("Chris wins\n")
-		playerStore := &poker.StubPlayerStore{}
+		playerStore := &StubPlayerStore{}
 
 		cli := poker.NewCLI(playerStore, in, dummySpyAlerter)
 		cli.PlayPoker()
 
-		poker.AssertPlayerWin(t, playerStore, "Chris")
+		AssertPlayerWin(t, playerStore, "Chris")
 	})
 
 	t.Run("record cleo win from user input", func(t *testing.T) {
 		in := strings.NewReader("Cleo wins\n")
-		playerStore := &poker.StubPlayerStore{}
+		playerStore := &StubPlayerStore{}
 
 		cli := poker.NewCLI(playerStore, in, dummySpyAlerter)
 		cli.PlayPoker()
 
-		poker.AssertPlayerWin(t, playerStore, "Cleo")
+		AssertPlayerWin(t, playerStore, "Cleo")
 	})
 
 	t.Run("do not read beyond the first newline", func(t *testing.T) {
@@ -91,7 +93,7 @@ func TestCLI(t *testing.T) {
 			strings.NewReader("Chris wins\n hello there"),
 		}
 
-		playerStore := &poker.StubPlayerStore{}
+		playerStore := &StubPlayerStore{}
 
 		cli := poker.NewCLI(playerStore, in, dummySpyAlerter)
 		cli.PlayPoker()
@@ -119,5 +121,42 @@ func assertScheduledAlert(t testing.TB, got, want scheduledAlert) {
 	t.Helper()
 	if got != want {
 		t.Errorf("got %+v, want %+v", got, want)
+	}
+}
+
+
+// StubPlayerStore implements PlayerStore for testing purposes.
+type StubPlayerStore struct {
+	Scores   map[string]int
+	WinCalls []string
+	League   []poker.Player
+}
+
+// GetPlayerScore returns a score from Scores.
+func (s *StubPlayerStore) GetPlayerScore(name string) int {
+	score := s.Scores[name]
+	return score
+}
+
+// RecordWin will record a win to WinCalls.
+func (s *StubPlayerStore) RecordWin(name string) {
+	s.WinCalls = append(s.WinCalls, name)
+}
+
+// GetLeague returns League.
+func (s *StubPlayerStore) GetLeague() poker.League {
+	return s.League
+}
+
+// AssertPlayerWin allows you to spy on the store's calls to RecordWin.
+func AssertPlayerWin(t testing.TB, store *StubPlayerStore, winner string) {
+	t.Helper()
+
+	if len(store.WinCalls) != 1 {
+		t.Fatalf("got %d calls to RecordWin want %d", len(store.WinCalls), 1)
+	}
+
+	if store.WinCalls[0] != winner {
+		t.Errorf("did not store correct winner got %q want %q", store.WinCalls[0], winner)
 	}
 }

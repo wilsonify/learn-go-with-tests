@@ -4,12 +4,14 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	poker "learn.go/S02-build-an-app/c23-command-line/v1"
 )
 
 func TestRecordingWinsAndRetrievingThem(t *testing.T) {
-	database, cleanDatabase := createTempFile(t, `[]`)
+	database, cleanDatabase := CreateTempFile(t, `[]`)
 	defer cleanDatabase()
-	store, err := NewFileSystemPlayerStore(database)
+	store, err := poker.NewFileSystemPlayerStore(database)
 
 	assertNoError(t, err)
 
@@ -22,7 +24,7 @@ func TestRecordingWinsAndRetrievingThem(t *testing.T) {
 
 	t.Run("get score", func(t *testing.T) {
 		response := httptest.NewRecorder()
-		server.ServeHTTP(response, newGetScoreRequest(player))
+		server.ServeHTTP(response, NewGetScoreRequest(player))
 		assertStatus(t, response.Code, http.StatusOK)
 
 		assertResponseBody(t, response.Body.String(), "3")
@@ -30,7 +32,7 @@ func TestRecordingWinsAndRetrievingThem(t *testing.T) {
 
 	t.Run("get league", func(t *testing.T) {
 		response := httptest.NewRecorder()
-		server.ServeHTTP(response, newLeagueRequest())
+		server.ServeHTTP(response, NewLeagueRequest())
 		assertStatus(t, response.Code, http.StatusOK)
 
 		got := getLeagueFromResponse(t, response.Body)
