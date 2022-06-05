@@ -106,18 +106,18 @@ func (p *PlayerServer) processWin(w http.ResponseWriter, player string) {
 
 // FileSystemPlayerStore stores players in the filesystem.
 type FileSystemPlayerStore struct {
-	database io.ReadWriteSeeker
-	league   League
+	DatabaseSeeker io.ReadWriteSeeker
+	league         League
 }
 
 // NewFileSystemPlayerStore creates a FileSystemPlayerStore.
-func NewFileSystemPlayerStore(database io.ReadWriteSeeker) *FileSystemPlayerStore {
-	database.Seek(0, 0)
-	league, _ := NewLeague(database)
+func NewFileSystemPlayerStore(DatabaseSeeker io.ReadWriteSeeker) *FileSystemPlayerStore {
+	DatabaseSeeker.Seek(0, 0)
+	league, _ := NewLeague(DatabaseSeeker)
 
 	return &FileSystemPlayerStore{
-		database: database,
-		league:   league,
+		DatabaseSeeker: DatabaseSeeker,
+		league:         league,
 	}
 }
 
@@ -148,8 +148,8 @@ func (f *FileSystemPlayerStore) RecordWin(name string) {
 		f.league = append(f.league, Player{name, 1})
 	}
 
-	f.database.Seek(0, 0)
-	json.NewEncoder(f.database).Encode(f.league)
+	f.DatabaseSeeker.Seek(0, 0)
+	json.NewEncoder(f.DatabaseSeeker).Encode(f.league)
 }
 
 func Mainly() {
@@ -164,4 +164,19 @@ func Mainly() {
 	server := NewPlayerServer(store)
 
 	log.Fatal(http.ListenAndServe(":5000", server))
+}
+
+func NewLeagueRequest() *http.Request {
+	req, _ := http.NewRequest(http.MethodGet, "/league", nil)
+	return req
+}
+
+func NewGetScoreRequest(name string) *http.Request {
+	req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", name), nil)
+	return req
+}
+
+func NewPostWinRequest(name string) *http.Request {
+	req, _ := http.NewRequest(http.MethodPost, fmt.Sprintf("/players/%s", name), nil)
+	return req
 }

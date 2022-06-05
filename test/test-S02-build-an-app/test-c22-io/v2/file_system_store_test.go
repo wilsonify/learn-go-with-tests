@@ -3,6 +3,8 @@ package main
 import (
 	"strings"
 	"testing"
+
+	inputoutput "learn.go/S02-build-an-app/c22-io/v2"
 )
 
 func TestFileSystemStore(t *testing.T) {
@@ -12,11 +14,11 @@ func TestFileSystemStore(t *testing.T) {
 			{"Name": "Cleo", "Wins": 10},
 			{"Name": "Chris", "Wins": 33}]`)
 
-		store := FileSystemPlayerStore{database}
+		store := inputoutput.FileSystemPlayerStore{database}
 
 		got := store.GetLeague()
 
-		want := []Player{
+		want := []inputoutput.Player{
 			{"Cleo", 10},
 			{"Chris", 33},
 		}
@@ -33,7 +35,7 @@ func TestFileSystemStore(t *testing.T) {
 			{"Name": "Cleo", "Wins": 10},
 			{"Name": "Chris", "Wins": 33}]`)
 
-		store := FileSystemPlayerStore{database}
+		store := inputoutput.FileSystemPlayerStore{database}
 
 		got := store.GetPlayerScore("Chris")
 		want := 33

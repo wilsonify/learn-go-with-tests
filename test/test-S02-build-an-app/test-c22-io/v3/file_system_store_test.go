@@ -5,6 +5,8 @@ import (
 	"io/ioutil"
 	"os"
 	"testing"
+
+	inputoutput "learn.go/S02-build-an-app/c22-io/v3"
 )
 
 func createTempFile(t testing.TB, initialData string) (io.ReadWriteSeeker, func()) {
@@ -34,11 +36,11 @@ func TestFileSystemStore(t *testing.T) {
 			{"Name": "Chris", "Wins": 33}]`)
 		defer cleanDatabase()
 
-		store := FileSystemPlayerStore{database}
+		store := inputoutput.FileSystemPlayerStore{database}
 
 		got := store.GetLeague()
 
-		want := []Player{
+		want := []inputoutput.Player{
 			{"Cleo", 10},
 			{"Chris", 33},
 		}
@@ -56,7 +58,7 @@ func TestFileSystemStore(t *testing.T) {
 			{"Name": "Chris", "Wins": 33}]`)
 		defer cleanDatabase()
 
-		store := FileSystemPlayerStore{database}
+		store := inputoutput.FileSystemPlayerStore{database}
 
 		got := store.GetPlayerScore("Chris")
 		want := 33
@@ -69,7 +71,7 @@ func TestFileSystemStore(t *testing.T) {
 			{"Name": "Chris", "Wins": 33}]`)
 		defer cleanDatabase()
 
-		store := FileSystemPlayerStore{database}
+		store := inputoutput.FileSystemPlayerStore{database}
 
 		store.RecordWin("Chris")
 

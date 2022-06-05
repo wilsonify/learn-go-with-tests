@@ -4,6 +4,8 @@ import (
 	"io/ioutil"
 	"os"
 	"testing"
+
+	inputoutput "learn.go/S02-build-an-app/c22-io/v8"
 )
 
 func createTempFile(t testing.TB, initialData string) (*os.File, func()) {
@@ -33,13 +35,13 @@ func TestFileSystemStore(t *testing.T) {
 			{"Name": "Chris", "Wins": 33}]`)
 		defer cleanDatabase()
 
-		store, err := NewFileSystemPlayerStore(database)
+		store, err := inputoutput.NewFileSystemPlayerStore(database)
 
 		assertNoError(t, err)
 
 		got := store.GetLeague()
 
-		want := []Player{
+		want := []inputoutput.Player{
 			{"Cleo", 10},
 			{"Chris", 33},
 		}
@@ -57,7 +59,7 @@ func TestFileSystemStore(t *testing.T) {
 			{"Name": "Chris", "Wins": 33}]`)
 		defer cleanDatabase()
 
-		store, err := NewFileSystemPlayerStore(database)
+		store, err := inputoutput.NewFileSystemPlayerStore(database)
 
 		assertNoError(t, err)
 
@@ -72,7 +74,7 @@ func TestFileSystemStore(t *testing.T) {
 			{"Name": "Chris", "Wins": 33}]`)
 		defer cleanDatabase()
 
-		store, err := NewFileSystemPlayerStore(database)
+		store, err := inputoutput.NewFileSystemPlayerStore(database)
 
 		assertNoError(t, err)
 
@@ -89,7 +91,7 @@ func TestFileSystemStore(t *testing.T) {
 			{"Name": "Chris", "Wins": 33}]`)
 		defer cleanDatabase()
 
-		store, err := NewFileSystemPlayerStore(database)
+		store, err := inputoutput.NewFileSystemPlayerStore(database)
 
 		assertNoError(t, err)
 
@@ -104,7 +106,7 @@ func TestFileSystemStore(t *testing.T) {
 		database, cleanDatabase := createTempFile(t, "")
 		defer cleanDatabase()
 
-		_, err := NewFileSystemPlayerStore(database)
+		_, err := inputoutput.NewFileSystemPlayerStore(database)
 
 		assertNoError(t, err)
 	})

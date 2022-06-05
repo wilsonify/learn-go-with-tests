@@ -106,13 +106,13 @@ const dbFileName = "game.db.json"
 
 // FileSystemPlayerStore stores players in the filesystem.
 type FileSystemPlayerStore struct {
-	database io.ReadWriteSeeker
+	DatabaseSeeker io.ReadWriteSeeker
 }
 
 // GetLeague returns the scores of all the players.
 func (f *FileSystemPlayerStore) GetLeague() League {
-	f.database.Seek(0, 0)
-	league, _ := NewLeague(f.database)
+	f.DatabaseSeeker.Seek(0, 0)
+	league, _ := NewLeague(f.DatabaseSeeker)
 	return league
 }
 
@@ -139,8 +139,8 @@ func (f *FileSystemPlayerStore) RecordWin(name string) {
 		league = append(league, Player{name, 1})
 	}
 
-	f.database.Seek(0, 0)
-	json.NewEncoder(f.database).Encode(league)
+	f.DatabaseSeeker.Seek(0, 0)
+	json.NewEncoder(f.DatabaseSeeker).Encode(league)
 }
 
 func Mainly() {
@@ -154,4 +154,19 @@ func Mainly() {
 	server := NewPlayerServer(store)
 
 	log.Fatal(http.ListenAndServe(":5000", server))
+}
+
+func NewLeagueRequest() *http.Request {
+	req, _ := http.NewRequest(http.MethodGet, "/league", nil)
+	return req
+}
+
+func NewGetScoreRequest(name string) *http.Request {
+	req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", name), nil)
+	return req
+}
+
+func NewPostWinRequest(name string) *http.Request {
+	req, _ := http.NewRequest(http.MethodPost, fmt.Sprintf("/players/%s", name), nil)
+	return req
 }

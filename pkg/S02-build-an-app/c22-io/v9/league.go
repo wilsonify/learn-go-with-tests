@@ -40,8 +40,8 @@ const dbFileName = "game.db.json"
 
 // FileSystemPlayerStore stores players in the filesystem.
 type FileSystemPlayerStore struct {
-	database *json.Encoder
-	league   League
+	DatabaseSeeker *json.Encoder
+	league         League
 }
 
 // NewFileSystemPlayerStore creates a FileSystemPlayerStore initialising the store if needed.
@@ -60,8 +60,8 @@ func NewFileSystemPlayerStore(file *os.File) (*FileSystemPlayerStore, error) {
 	}
 
 	return &FileSystemPlayerStore{
-		database: json.NewEncoder(&tape{file}),
-		league:   league,
+		DatabaseSeeker: json.NewEncoder(&Tape{file}),
+		league:         league,
 	}, nil
 }
 
@@ -112,7 +112,7 @@ func (f *FileSystemPlayerStore) RecordWin(name string) {
 		f.league = append(f.league, Player{name, 1})
 	}
 
-	f.database.Encode(f.league)
+	f.DatabaseSeeker.Encode(f.league)
 }
 
 // PlayerStore stores score information about players.
@@ -182,11 +182,11 @@ func (p *PlayerServer) processWin(w http.ResponseWriter, player string) {
 	w.WriteHeader(http.StatusAccepted)
 }
 
-type tape struct {
+type Tape struct {
 	file *os.File
 }
 
-func (t *tape) Write(p []byte) (n int, err error) {
+func (t *Tape) Write(p []byte) (n int, err error) {
 	t.file.Truncate(0)
 	t.file.Seek(0, 0)
 	return t.file.Write(p)

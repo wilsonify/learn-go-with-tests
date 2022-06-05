@@ -58,7 +58,7 @@ func NewFileSystemPlayerStore(file *os.File) (*FileSystemPlayerStore, error) {
 	}
 
 	return &FileSystemPlayerStore{
-		database: json.NewEncoder(&tape{file}),
+		database: json.NewEncoder(&Tape{file}),
 		league:   league,
 	}, nil
 }
@@ -190,11 +190,11 @@ func (p *PlayerServer) processWin(w http.ResponseWriter, player string) {
 	w.WriteHeader(http.StatusAccepted)
 }
 
-type tape struct {
+type Tape struct {
 	file *os.File
 }
 
-func (t *tape) Write(p []byte) (n int, err error) {
+func (t *Tape) Write(p []byte) (n int, err error) {
 	t.file.Truncate(0)
 	t.file.Seek(0, 0)
 	return t.file.Write(p)
