@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"testing"
 	"testing/quick"
+
+	numerals "learn.go/S01-fundamentals/c15-roman-numerals/v11"
 )
 
 var (
@@ -46,7 +48,7 @@ var (
 func TestConvertingToRomanNumerals(t *testing.T) {
 	for _, test := range cases {
 		t.Run(fmt.Sprintf("%d gets converted to '%s", test.Arabic, test.Roman), func(t *testing.T) {
-			got := ConvertToRoman(test.Arabic)
+			got := numerals.ConvertToRoman(test.Arabic)
 			if got != test.Roman {
 				t.Errorf("got %q, want %q", got, test.Roman)
 			}
@@ -57,7 +59,7 @@ func TestConvertingToRomanNumerals(t *testing.T) {
 func TestConvertingToArabic(t *testing.T) {
 	for _, test := range cases {
 		t.Run(fmt.Sprintf("%q gets converted to %d", test.Roman, test.Arabic), func(t *testing.T) {
-			got := ConvertToArabic(test.Roman)
+			got := numerals.ConvertToArabic(test.Roman)
 			if got != test.Arabic {
 				t.Errorf("got %d, want %d", got, test.Arabic)
 			}
@@ -71,8 +73,8 @@ func TestPropertiesOfConversion(t *testing.T) {
 			return true
 		}
 		t.Log("testing", arabic)
-		roman := ConvertToRoman(arabic)
-		fromRoman := ConvertToArabic(roman)
+		roman := numerals.ConvertToRoman(arabic)
+		fromRoman := numerals.ConvertToArabic(roman)
 		return fromRoman == arabic
 	}
 

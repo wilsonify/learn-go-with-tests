@@ -1,9 +1,13 @@
-package integers
+package integers_test
 
-import "testing"
+import (
+	"testing"
+
+	integers "learn.go/S01-fundamentals/c02-integers/v1"
+)
 
 func TestAdder(t *testing.T) {
-	sum := Add(2, 2)
+	sum := integers.Add(2, 2)
 	expected := 4
 
 	if sum != expected {

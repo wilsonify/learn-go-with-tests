@@ -14,12 +14,12 @@ func (b Bitcoin) String() string {
 
 // Wallet stores the number of Bitcoin someone owns.
 type Wallet struct {
-	balance Bitcoin
+	Balance Bitcoin
 }
 
 // Deposit will add some Bitcoin to a wallet.
 func (w *Wallet) Deposit(amount Bitcoin) {
-	w.balance += amount
+	w.Balance += amount
 }
 
 // ErrInsufficientFunds means a wallet does not have enough Bitcoin to perform a withdraw.
@@ -28,15 +28,15 @@ var ErrInsufficientFunds = errors.New("cannot withdraw, insufficient funds")
 // Withdraw subtracts some Bitcoin from the wallet, returning an error if it cannot be performed.
 func (w *Wallet) Withdraw(amount Bitcoin) error {
 
-	if amount > w.balance {
+	if amount > w.Balance {
 		return ErrInsufficientFunds
 	}
 
-	w.balance -= amount
+	w.Balance -= amount
 	return nil
 }
 
 // Balance returns the number of Bitcoin a wallet has.
-func (w *Wallet) Balance() Bitcoin {
-	return w.balance
+func (w *Wallet) GetBalance() Bitcoin {
+	return w.Balance
 }

@@ -2,11 +2,13 @@ package main
 
 import (
 	"testing"
+
+	structs "learn.go/S01-fundamentals/c05-structs/v7"
 )
 
 func TestPerimeter(t *testing.T) {
-	rectangle := Rectangle{10.0, 10.0}
-	got := Perimeter(rectangle)
+	rectangle := structs.Rectangle{10.0, 10.0}
+	got := structs.Perimeter(rectangle)
 	want := 40.0
 
 	if got != want {
@@ -17,12 +19,12 @@ func TestPerimeter(t *testing.T) {
 func TestArea(t *testing.T) {
 
 	areaTests := []struct {
-		shape Shape
+		shape structs.Shape
 		want  float64
 	}{
-		{Rectangle{12, 6}, 72.0},
-		{Circle{10}, 314.1592653589793},
-		{Triangle{12, 6}, 36.0},
+		{structs.Rectangle{12, 6}, 72.0},
+		{structs.Circle{10}, 314.1592653589793},
+		{structs.Triangle{12, 6}, 36.0},
 	}
 
 	for _, tt := range areaTests {

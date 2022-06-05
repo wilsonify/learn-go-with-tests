@@ -3,12 +3,14 @@ package main
 import (
 	"bytes"
 	"testing"
+
+	mocking "learn.go/S01-fundamentals/c09-mocking/v2"
 )
 
 func TestCountdown(t *testing.T) {
 	buffer := &bytes.Buffer{}
 
-	Countdown(buffer)
+	mocking.Countdown(buffer)
 
 	got := buffer.String()
 	want := `3

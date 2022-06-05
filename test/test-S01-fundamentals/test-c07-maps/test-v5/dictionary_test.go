@@ -2,10 +2,12 @@ package main
 
 import (
 	"testing"
+
+	maps "learn.go/S01-fundamentals/c07-maps/v5"
 )
 
 func TestSearch(t *testing.T) {
-	dictionary := Dictionary{"test": "this is just a test"}
+	dictionary := maps.Dictionary{"test": "this is just a test"}
 
 	t.Run("known word", func(t *testing.T) {
 		got, _ := dictionary.Search("test")
@@ -17,13 +19,13 @@ func TestSearch(t *testing.T) {
 	t.Run("unknown word", func(t *testing.T) {
 		_, got := dictionary.Search("unknown")
 
-		assertError(t, got, ErrNotFound)
+		assertError(t, got, maps.ErrNotFound)
 	})
 }
 
 func TestAdd(t *testing.T) {
 	t.Run("new word", func(t *testing.T) {
-		dictionary := Dictionary{}
+		dictionary := maps.Dictionary{}
 		word := "test"
 		definition := "this is just a test"
 
@@ -36,10 +38,10 @@ func TestAdd(t *testing.T) {
 	t.Run("existing word", func(t *testing.T) {
 		word := "test"
 		definition := "this is just a test"
-		dictionary := Dictionary{word: definition}
+		dictionary := maps.Dictionary{word: definition}
 		err := dictionary.Add(word, "new test")
 
-		assertError(t, err, ErrWordExists)
+		assertError(t, err, maps.ErrWordExists)
 		assertDefinition(t, dictionary, word, definition)
 	})
 }
@@ -47,7 +49,7 @@ func TestAdd(t *testing.T) {
 func TestUpdate(t *testing.T) {
 	word := "test"
 	definition := "this is just a test"
-	dictionary := Dictionary{word: definition}
+	dictionary := maps.Dictionary{word: definition}
 	newDefinition := "new definition"
 
 	dictionary.Update(word, newDefinition)
@@ -71,7 +73,7 @@ func assertError(t testing.TB, got, want error) {
 	}
 }
 
-func assertDefinition(t testing.TB, dictionary Dictionary, word, definition string) {
+func assertDefinition(t testing.TB, dictionary maps.Dictionary, word, definition string) {
 	t.Helper()
 
 	got, err := dictionary.Search(word)

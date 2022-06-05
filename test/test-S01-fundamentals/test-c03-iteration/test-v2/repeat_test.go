@@ -1,9 +1,13 @@
 package iteration
 
-import "testing"
+import (
+	"testing"
+
+	iteration "learn.go/S01-fundamentals/c03-iteration/v2"
+)
 
 func TestRepeat(t *testing.T) {
-	repeated := Repeat("a")
+	repeated := iteration.Repeat("a")
 	expected := "aaaaa"
 
 	if repeated != expected {

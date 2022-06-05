@@ -1,6 +1,10 @@
 package generics
 
-import "testing"
+import (
+	"testing"
+
+	generics "learn.go/S01-fundamentals/c19-generics"
+)
 
 func TestAssertFunctions(t *testing.T) {
 	t.Run("asserting on integers", func(t *testing.T) {
@@ -18,7 +22,7 @@ func TestAssertFunctions(t *testing.T) {
 
 func TestStack(t *testing.T) {
 	t.Run("integer stack", func(t *testing.T) {
-		myStackOfInts := new(Stack[int])
+		myStackOfInts := new(generics.Stack[int])
 
 		// check stack is empty
 		AssertTrue(t, myStackOfInts.IsEmpty())

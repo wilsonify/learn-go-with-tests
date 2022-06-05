@@ -4,6 +4,8 @@ import (
 	"math"
 	"testing"
 	"time"
+
+	clockfacemath "learn.go/S01-fundamentals/c16-mathematics/v3"
 )
 
 func TestSecondsInRadians(t *testing.T) {
@@ -19,7 +21,7 @@ func TestSecondsInRadians(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(testName(c.time), func(t *testing.T) {
-			got := secondsInRadians(c.time)
+			got := clockfacemath.SecondsInRadians(c.time)
 			if got != c.angle {
 				t.Fatalf("Wanted %v radians, but got %v", c.angle, got)
 			}

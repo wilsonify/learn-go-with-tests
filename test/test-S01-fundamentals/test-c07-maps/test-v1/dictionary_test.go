@@ -1,9 +1,13 @@
 package main
 
-import "testing"
+import (
+	"testing"
+
+	maps "learn.go/S01-fundamentals/c07-maps/v1"
+)
 
 func TestSearch(t *testing.T) {
-	dictionary := Dictionary{"test": "this is just a test"}
+	dictionary := maps.Dictionary{"test": "this is just a test"}
 
 	got := dictionary.Search("test")
 	want := "this is just a test"

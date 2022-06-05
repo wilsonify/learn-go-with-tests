@@ -5,13 +5,15 @@ import (
 	"reflect"
 	"testing"
 	"time"
+
+	mocking "learn.go/S01-fundamentals/c09-mocking/v5"
 )
 
 func TestCountdown(t *testing.T) {
 
 	t.Run("prints 3 to Go!", func(t *testing.T) {
 		buffer := &bytes.Buffer{}
-		Countdown(buffer, &SpyCountdownOperations{})
+		mocking.Countdown(buffer, &SpyCountdownOperations{})
 
 		got := buffer.String()
 		want := `3
@@ -26,7 +28,7 @@ Go!`
 
 	t.Run("sleep before every print", func(t *testing.T) {
 		spySleepPrinter := &SpyCountdownOperations{}
-		Countdown(spySleepPrinter, spySleepPrinter)
+		mocking.Countdown(spySleepPrinter, spySleepPrinter)
 
 		want := []string{
 			sleep,
@@ -49,7 +51,7 @@ func TestConfigurableSleeper(t *testing.T) {
 	sleepTime := 5 * time.Second
 
 	spyTime := &SpyTime{}
-	sleeper := ConfigurableSleeper{sleepTime, spyTime.Sleep}
+	sleeper := mocking.ConfigurableSleeper{sleepTime, spyTime.Sleep}
 	sleeper.Sleep()
 
 	if spyTime.durationSlept != sleepTime {

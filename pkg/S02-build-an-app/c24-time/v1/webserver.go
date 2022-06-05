@@ -6,6 +6,8 @@ import (
 	"os"
 )
 
+const dbFileName = "game.db.json"
+
 func Main_webserver() {
 	db, err := os.OpenFile(dbFileName, os.O_RDWR|os.O_CREATE, 0666)
 

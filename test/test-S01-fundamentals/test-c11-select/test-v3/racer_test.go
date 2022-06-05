@@ -5,6 +5,8 @@ import (
 	"net/http/httptest"
 	"testing"
 	"time"
+
+	racer "learn.go/S01-fundamentals/c11-select/v3"
 )
 
 func TestRacer(t *testing.T) {
@@ -20,7 +22,7 @@ func TestRacer(t *testing.T) {
 		fastURL := fastServer.URL
 
 		want := fastURL
-		got, err := Racer(slowURL, fastURL)
+		got, err := racer.Racer(slowURL, fastURL)
 
 		if err != nil {
 			t.Fatalf("did not expect an error but got one %v", err)
@@ -36,7 +38,7 @@ func TestRacer(t *testing.T) {
 
 		defer server.Close()
 
-		_, err := ConfigurableRacer(server.URL, server.URL, 20*time.Millisecond)
+		_, err := racer.ConfigurableRacer(server.URL, server.URL, 20*time.Millisecond)
 
 		if err == nil {
 			t.Error("expected an error but didn't get one")

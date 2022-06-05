@@ -3,6 +3,8 @@ package concurrency
 import (
 	"testing"
 	"time"
+
+	concurrency "learn.go/S01-fundamentals/c10-concurrency/v2"
 )
 
 func slowStubWebsiteChecker(_ string) bool {
@@ -17,6 +19,6 @@ func BenchmarkCheckWebsites(b *testing.B) {
 	}
 
 	for i := 0; i < b.N; i++ {
-		CheckWebsites(slowStubWebsiteChecker, urls)
+		concurrency.CheckWebsites(slowStubWebsiteChecker, urls)
 	}
 }

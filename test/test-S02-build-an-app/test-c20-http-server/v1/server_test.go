@@ -1,17 +1,18 @@
 package main
 
 import (
-	hs "learn.go/S02-build-an-app/c20-http-server/v1"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	httpserver "learn.go/S02-build-an-app/c20-http-server/v1"
 )
 
 func TestGETPlayers(t *testing.T) {
 	request, _ := http.NewRequest(http.MethodGet, "/", nil)
 	response := httptest.NewRecorder()
 
-	hs.PlayerServer(response, request)
+	httpserver.PlayerServer(response, request)
 
 	t.Run("returns Pepper's score", func(t *testing.T) {
 		got := response.Body.String()

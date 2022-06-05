@@ -1,9 +1,11 @@
-package clockface
+package clockface_test
 
 import (
 	"math"
 	"testing"
 	"time"
+
+	clockfacemath "learn.go/S01-fundamentals/c16-mathematics/v4"
 )
 
 func TestSecondsInRadians(t *testing.T) {
@@ -19,7 +21,7 @@ func TestSecondsInRadians(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(testName(c.time), func(t *testing.T) {
-			got := secondsInRadians(c.time)
+			got := clockfacemath.SecondsInRadians(c.time)
 			if got != c.angle {
 				t.Fatalf("Wanted %v radians, but got %v", c.angle, got)
 			}
@@ -30,17 +32,17 @@ func TestSecondsInRadians(t *testing.T) {
 func TestSecondHandPoint(t *testing.T) {
 	cases := []struct {
 		time  time.Time
-		point Point
+		point clockfacemath.Point
 	}{
-		{simpleTime(0, 0, 30), Point{0, -1}},
-		{simpleTime(0, 0, 45), Point{-1, 0}},
+		{simpleTime(0, 0, 30), clockfacemath.Point{0, -1}},
+		{simpleTime(0, 0, 45), clockfacemath.Point{-1, 0}},
 	}
 
 	for _, c := range cases {
 		t.Run(testName(c.time), func(t *testing.T) {
-			got := secondHandPoint(c.time)
+			got := clockfacemath.SecondHandPoint(c.time)
 			if !roughlyEqualPoint(got, c.point) {
-				t.Fatalf("Wanted %v Point, but got %v", c.point, got)
+				t.Fatalf("Wanted %v clockfacemath.Point, but got %v", c.point, got)
 			}
 		})
 	}
@@ -51,7 +53,7 @@ func roughlyEqualFloat64(a, b float64) bool {
 	return math.Abs(a-b) < equalityThreshold
 }
 
-func roughlyEqualPoint(a, b Point) bool {
+func roughlyEqualPoint(a, b clockfacemath.Point) bool {
 	return roughlyEqualFloat64(a.X, b.X) &&
 		roughlyEqualFloat64(a.Y, b.Y)
 }

@@ -66,7 +66,7 @@ var wsUpgrader = websocket.Upgrader{
 }
 
 func (p *PlayerServer) webSocket(w http.ResponseWriter, r *http.Request) {
-	ws := newPlayerServerWS(w, r)
+	ws := NewPlayerServerWS(w, r)
 
 	numberOfPlayersMsg := ws.WaitForMsg()
 	numberOfPlayers, _ := strconv.Atoi(numberOfPlayersMsg)

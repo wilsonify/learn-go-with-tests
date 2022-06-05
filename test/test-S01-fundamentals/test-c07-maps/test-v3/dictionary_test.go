@@ -2,10 +2,12 @@ package main
 
 import (
 	"testing"
+
+	maps "learn.go/S01-fundamentals/c07-maps/v3"
 )
 
 func TestSearch(t *testing.T) {
-	dictionary := Dictionary{"test": "this is just a test"}
+	dictionary := maps.Dictionary{"test": "this is just a test"}
 
 	t.Run("known word", func(t *testing.T) {
 		got, _ := dictionary.Search("test")
@@ -17,12 +19,12 @@ func TestSearch(t *testing.T) {
 	t.Run("unknown word", func(t *testing.T) {
 		_, got := dictionary.Search("unknown")
 
-		assertError(t, got, ErrNotFound)
+		assertError(t, got, maps.ErrNotFound)
 	})
 }
 
 func TestAdd(t *testing.T) {
-	dictionary := Dictionary{}
+	dictionary := maps.Dictionary{}
 	word := "test"
 	definition := "this is just a test"
 
@@ -47,7 +49,7 @@ func assertError(t testing.TB, got, want error) {
 	}
 }
 
-func assertDefinition(t testing.TB, dictionary Dictionary, word, definition string) {
+func assertDefinition(t testing.TB, dictionary maps.Dictionary, word string, definition string) {
 	t.Helper()
 
 	got, err := dictionary.Search(word)

@@ -1,6 +1,10 @@
 package main
 
-import "testing"
+import (
+	"testing"
+
+	arrays "learn.go/S01-fundamentals/c04-arrays/v3"
+)
 
 func TestSum(t *testing.T) {
 
@@ -8,7 +12,7 @@ func TestSum(t *testing.T) {
 
 		numbers := []int{1, 2, 3}
 
-		got := Sum(numbers)
+		got := arrays.Sum(numbers)
 		want := 6
 
 		if got != want {

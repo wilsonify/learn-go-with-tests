@@ -3,11 +3,13 @@ package main
 import (
 	"bytes"
 	"testing"
+
+	injection "learn.go/S01-fundamentals/c08-dependency-injection/v1"
 )
 
 func TestGreet(t *testing.T) {
 	buffer := bytes.Buffer{}
-	Greet(&buffer, "Chris")
+	injection.Greet(&buffer, "Chris")
 
 	got := buffer.String()
 	want := "Hello, Chris"

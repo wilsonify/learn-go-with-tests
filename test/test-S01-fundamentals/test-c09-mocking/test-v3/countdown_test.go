@@ -3,13 +3,15 @@ package main
 import (
 	"bytes"
 	"testing"
+
+	mocking "learn.go/S01-fundamentals/c09-mocking/v3"
 )
 
 func TestCountdown(t *testing.T) {
 	buffer := &bytes.Buffer{}
 	spySleeper := &SpySleeper{}
 
-	Countdown(buffer, spySleeper)
+	mocking.Countdown(buffer, spySleeper)
 
 	got := buffer.String()
 	want := `3

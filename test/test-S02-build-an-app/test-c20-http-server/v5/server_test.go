@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	httpserver "learn.go/S02-build-an-app/c20-http-server/v5"
 )
 
 type StubPlayerStore struct {
@@ -29,7 +31,7 @@ func TestGETPlayers(t *testing.T) {
 		},
 		nil,
 	}
-	server := &PlayerServer{&store}
+	server := &httpserver.PlayerServer{&store}
 
 	tests := []struct {
 		name               string
@@ -58,7 +60,7 @@ func TestGETPlayers(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			request := newGetScoreRequest(tt.player)
+			request := httpserver.NewGetScoreRequest(tt.player)
 			response := httptest.NewRecorder()
 
 			server.ServeHTTP(response, request)
@@ -74,7 +76,7 @@ func TestStoreWins(t *testing.T) {
 		map[string]int{},
 		nil,
 	}
-	server := &PlayerServer{&store}
+	server := &httpserver.PlayerServer{&store}
 
 	t.Run("it records wins on POST", func(t *testing.T) {
 		player := "Pepper"

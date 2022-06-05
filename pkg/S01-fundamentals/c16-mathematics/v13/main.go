@@ -1,5 +1,5 @@
 // Writes an SVG of the current time to Stdout.
-package clockface
+package clockfacemath
 
 import (
 	"fmt"

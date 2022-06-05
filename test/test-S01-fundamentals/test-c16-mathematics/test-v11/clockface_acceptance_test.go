@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"
+	clockfacemath "learn.go/S01-fundamentals/c16-mathematics/v11"
 )
 
 type SVG struct {
@@ -52,7 +52,7 @@ func TestSVGWriterSecondHand(t *testing.T) {
 	for _, c := range cases {
 		t.Run(testName(c.time), func(t *testing.T) {
 			b := bytes.Buffer{}
-			clockface.SVGWriter(&b, c.time)
+			clockfacemath.SVGWriter(&b, c.time)
 
 			svg := SVG{}
 			xml.Unmarshal(b.Bytes(), &svg)
@@ -78,7 +78,7 @@ func TestSVGWriterMinutedHand(t *testing.T) {
 	for _, c := range cases {
 		t.Run(testName(c.time), func(t *testing.T) {
 			b := bytes.Buffer{}
-			clockface.SVGWriter(&b, c.time)
+			clockfacemath.SVGWriter(&b, c.time)
 
 			svg := SVG{}
 			xml.Unmarshal(b.Bytes(), &svg)
@@ -104,7 +104,7 @@ func TestSVGWriterHourHand(t *testing.T) {
 	for _, c := range cases {
 		t.Run(testName(c.time), func(t *testing.T) {
 			b := bytes.Buffer{}
-			clockface.SVGWriter(&b, c.time)
+			clockfacemath.SVGWriter(&b, c.time)
 
 			svg := SVG{}
 			xml.Unmarshal(b.Bytes(), &svg)

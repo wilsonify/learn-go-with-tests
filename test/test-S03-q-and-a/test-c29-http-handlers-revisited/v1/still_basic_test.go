@@ -10,29 +10,31 @@ import (
 	"reflect"
 	"strings"
 	"testing"
+
+	httphandler "learn.go/s03/q-and-a/c29-http-handlers-revisited/v1"
 )
 
 type MockUserService struct {
-	RegisterFunc    func(user User) (string, error)
-	UsersRegistered []User
+	RegisterFunc    func(user httphandler.User) (string, error)
+	UsersRegistered []httphandler.User
 }
 
-func (m *MockUserService) Register(user User) (insertedID string, err error) {
+func (m *MockUserService) Register(user httphandler.User) (insertedID string, err error) {
 	m.UsersRegistered = append(m.UsersRegistered, user)
 	return m.RegisterFunc(user)
 }
 
 func TestRegisterUser(t *testing.T) {
 	t.Run("can register valid users", func(t *testing.T) {
-		user := User{Name: "CJ"}
+		user := httphandler.User{Name: "CJ"}
 		expectedInsertedID := "whatever"
 
 		service := &MockUserService{
-			RegisterFunc: func(user User) (string, error) {
+			RegisterFunc: func(user httphandler.User) (string, error) {
 				return expectedInsertedID, nil
 			},
 		}
-		server := NewUserServer(service)
+		server := httphandler.NewUserServer(service)
 
 		req := httptest.NewRequest(http.MethodGet, "/", userToJSON(user))
 		res := httptest.NewRecorder()
@@ -55,7 +57,7 @@ func TestRegisterUser(t *testing.T) {
 	})
 
 	t.Run("returns 400 bad request if body is not valid user JSON", func(t *testing.T) {
-		server := NewUserServer(nil)
+		server := httphandler.NewUserServer(nil)
 
 		req := httptest.NewRequest(http.MethodGet, "/", strings.NewReader("trouble will find me"))
 		res := httptest.NewRecorder()
@@ -66,14 +68,14 @@ func TestRegisterUser(t *testing.T) {
 	})
 
 	t.Run("returns a 500 internal server error if the service fails", func(t *testing.T) {
-		user := User{Name: "CJ"}
+		user := httphandler.User{Name: "CJ"}
 
 		service := &MockUserService{
-			RegisterFunc: func(user User) (string, error) {
+			RegisterFunc: func(user httphandler.User) (string, error) {
 				return "", errors.New("couldn't add new user")
 			},
 		}
-		server := NewUserServer(service)
+		server := httphandler.NewUserServer(service)
 
 		req := httptest.NewRequest(http.MethodGet, "/", userToJSON(user))
 		res := httptest.NewRecorder()
@@ -91,7 +93,7 @@ func assertStatus(t testing.TB, got, want int) {
 	}
 }
 
-func userToJSON(user User) io.Reader {
+func userToJSON(user httphandler.User) io.Reader {
 	stuff, _ := json.Marshal(user)
 	return bytes.NewReader(stuff)
 }

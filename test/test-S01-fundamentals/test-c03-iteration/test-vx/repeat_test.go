@@ -1,9 +1,13 @@
 package iteration
 
-import "testing"
+import (
+	"testing"
+
+	iteration "learn.go/S01-fundamentals/c03-iteration/vx"
+)
 
 func TestRepeat(t *testing.T) {
-	repeated := Repeat("a")
+	repeated := iteration.Repeat("a")
 	expected := "aaaaa"
 
 	if repeated != expected {
@@ -13,6 +17,6 @@ func TestRepeat(t *testing.T) {
 
 func BenchmarkRepeat(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Repeat("a")
+		iteration.Repeat("a")
 	}
 }

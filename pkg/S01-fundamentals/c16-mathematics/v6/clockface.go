@@ -1,4 +1,4 @@
-package clockface
+package clockfacemath
 
 import (
 	"fmt"

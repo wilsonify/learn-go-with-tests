@@ -3,6 +3,8 @@ package main
 import (
 	"reflect"
 	"testing"
+
+	arrays "learn.go/S01-fundamentals/c04-arrays/v6"
 )
 
 func TestSum(t *testing.T) {
@@ -11,7 +13,7 @@ func TestSum(t *testing.T) {
 
 		numbers := []int{1, 2, 3}
 
-		got := Sum(numbers)
+		got := arrays.Sum(numbers)
 		want := 6
 
 		if got != want {
@@ -23,7 +25,7 @@ func TestSum(t *testing.T) {
 
 func TestSumAllTails(t *testing.T) {
 
-	got := SumAllTails([]int{1, 2}, []int{0, 9})
+	got := arrays.SumAllTails([]int{1, 2}, []int{0, 9})
 	want := []int{2, 9}
 
 	if !reflect.DeepEqual(got, want) {

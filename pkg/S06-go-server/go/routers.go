@@ -79,7 +79,7 @@ func ReadFormFileToTempFile(r *http.Request, key string) (*os.File, error) {
 		return nil, err
 	}
 
-	return readFileHeaderToTempFile(fileHeader)
+	return ReadFileHeaderToTempFile(fileHeader)
 }
 
 // ReadFormFilesToTempFiles reads files array data from a request form and writes it to a temporary files
@@ -91,7 +91,7 @@ func ReadFormFilesToTempFiles(r *http.Request, key string) ([]*os.File, error) {
 	files := make([]*os.File, 0, len(r.MultipartForm.File[key]))
 
 	for _, fileHeader := range r.MultipartForm.File[key] {
-		file, err := readFileHeaderToTempFile(fileHeader)
+		file, err := ReadFileHeaderToTempFile(fileHeader)
 		if err != nil {
 			return nil, err
 		}

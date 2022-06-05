@@ -3,12 +3,14 @@ package v1
 import (
 	"sync"
 	"testing"
+
+	syncronize "learn.go/S01-fundamentals/c13-sync/v2"
 )
 
 func TestCounter(t *testing.T) {
 
 	t.Run("incrementing the counter 3 times leaves it at 3", func(t *testing.T) {
-		counter := NewCounter()
+		counter := syncronize.NewCounter()
 		counter.Inc()
 		counter.Inc()
 		counter.Inc()
@@ -18,7 +20,7 @@ func TestCounter(t *testing.T) {
 
 	t.Run("it runs safely concurrently", func(t *testing.T) {
 		wantedCount := 1000
-		counter := NewCounter()
+		counter := syncronize.NewCounter()
 
 		var wg sync.WaitGroup
 		wg.Add(wantedCount)
@@ -36,7 +38,7 @@ func TestCounter(t *testing.T) {
 
 }
 
-func assertCounter(t testing.TB, got *Counter, want int) {
+func assertCounter(t testing.TB, got *syncronize.Counter, want int) {
 	t.Helper()
 	if got.Value() != want {
 		t.Errorf("got %d, want %d", got.Value(), want)

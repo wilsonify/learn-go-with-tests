@@ -5,6 +5,8 @@ import (
 	"net/http/httptest"
 	"testing"
 	"time"
+
+	racer "learn.go/S01-fundamentals/c11-select/v2"
 )
 
 func TestRacer(t *testing.T) {
@@ -19,7 +21,7 @@ func TestRacer(t *testing.T) {
 	fastURL := fastServer.URL
 
 	want := fastURL
-	got := Racer(slowURL, fastURL)
+	got := racer.Racer(slowURL, fastURL)
 
 	if got != want {
 		t.Errorf("got %q, want %q", got, want)

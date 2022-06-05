@@ -1,9 +1,13 @@
 package main
 
-import "testing"
+import (
+	"testing"
+
+	structs "learn.go/S01-fundamentals/c05-structs/v1"
+)
 
 func TestPerimeter(t *testing.T) {
-	got := Perimeter(10.0, 10.0)
+	got := structs.Perimeter(10.0, 10.0)
 	want := 40.0
 
 	if got != want {
