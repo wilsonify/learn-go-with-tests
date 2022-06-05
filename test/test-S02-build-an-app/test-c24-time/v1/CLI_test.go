@@ -11,21 +11,21 @@ import (
 	poker "learn.go/S02-build-an-app/c24-time/v1"
 )
 
-type scheduledAlert struct {
+type ScheduledAlert struct {
 	at     time.Duration
 	amount int
 }
 
-func (s scheduledAlert) String() string {
+func (s ScheduledAlert) String() string {
 	return fmt.Sprintf("%d chips at %v", s.amount, s.at)
 }
 
 type SpyBlindAlerter struct {
-	alerts []scheduledAlert
+	alerts []ScheduledAlert
 }
 
 func (s *SpyBlindAlerter) ScheduleAlertAt(at time.Duration, amount int) {
-	s.alerts = append(s.alerts, scheduledAlert{at, amount})
+	s.alerts = append(s.alerts, ScheduledAlert{at, amount})
 }
 
 var dummySpyAlerter = &SpyBlindAlerter{}
@@ -40,7 +40,7 @@ func TestCLI(t *testing.T) {
 		cli := poker.NewCLI(playerStore, in, blindAlerter)
 		cli.PlayPoker()
 
-		cases := []scheduledAlert{
+		cases := []ScheduledAlert{
 			{0 * time.Second, 100},
 			{10 * time.Minute, 200},
 			{20 * time.Minute, 300},
@@ -117,13 +117,12 @@ func (m failOnEndReader) Read(p []byte) (n int, err error) {
 	return n, err
 }
 
-func assertScheduledAlert(t testing.TB, got, want scheduledAlert) {
+func assertScheduledAlert(t testing.TB, got, want ScheduledAlert) {
 	t.Helper()
 	if got != want {
 		t.Errorf("got %+v, want %+v", got, want)
 	}
 }
-
 
 // StubPlayerStore implements PlayerStore for testing purposes.
 type StubPlayerStore struct {

@@ -5,7 +5,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	poker "learn.go/S02-build-an-app/c23-command-line/v3"
+	poker "learn.go/S02-build-an-app/c24-time/v3"
 )
 
 func TestRecordingWinsAndRetrievingThem(t *testing.T) {
@@ -36,9 +36,7 @@ func TestRecordingWinsAndRetrievingThem(t *testing.T) {
 		assertStatus(t, response.Code, http.StatusOK)
 
 		got := getLeagueFromResponse(t, response.Body)
-		want := []poker.Player{
-			{"Pepper", 3},
-		}
+		want := []poker.Player{{"Pepper", 3}}
 		assertLeague(t, got, want)
 	})
 }

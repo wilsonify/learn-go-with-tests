@@ -7,6 +7,7 @@ import (
 	"net/http/httptest"
 	"reflect"
 	"testing"
+
 	poker "learn.go/S02-build-an-app/c24-time/v3"
 )
 
@@ -116,13 +117,6 @@ func getLeagueFromResponse(t testing.TB, body io.Reader) []poker.Player {
 	return league
 }
 
-func assertLeague(t testing.TB, got, want []poker.Player) {
-	t.Helper()
-	if !reflect.DeepEqual(got, want) {
-		t.Errorf("got %v want %v", got, want)
-	}
-}
-
 func assertStatus(t testing.TB, got, want int) {
 	t.Helper()
 	if got != want {
@@ -149,5 +143,12 @@ func assertResponseBody(t testing.TB, got, want string) {
 	t.Helper()
 	if got != want {
 		t.Errorf("response body is wrong, got %q want %q", got, want)
+	}
+}
+
+func assertLeague(t testing.TB, got, want []poker.Player) {
+	t.Helper()
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("got %v want %v", got, want)
 	}
 }
