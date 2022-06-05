@@ -1,4 +1,4 @@
-package generics
+package generics_test
 
 import (
 	"testing"

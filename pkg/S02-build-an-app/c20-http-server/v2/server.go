@@ -41,3 +41,8 @@ func Mainly() {
 	server := &PlayerServer{&InMemoryPlayerStore{}}
 	log.Fatal(http.ListenAndServe(":5000", server))
 }
+
+func NewGetScoreRequest(name string) *http.Request {
+	req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", name), nil)
+	return req
+}

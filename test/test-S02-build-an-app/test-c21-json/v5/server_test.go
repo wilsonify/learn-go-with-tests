@@ -8,6 +8,8 @@ import (
 	"net/http/httptest"
 	"reflect"
 	"testing"
+	marshal "learn.go/S02-build-an-app/c21-json/v5"
+
 )
 
 type StubPlayerStore struct {
@@ -41,7 +43,7 @@ func TestGETPlayers(t *testing.T) {
 	server := NewPlayerServer(&store)
 
 	t.Run("returns Pepper's score", func(t *testing.T) {
-		request := newGetScoreRequest("Pepper")
+		request := marshal.NewGetScoreRequest("Pepper")
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
@@ -51,7 +53,7 @@ func TestGETPlayers(t *testing.T) {
 	})
 
 	t.Run("returns Floyd's score", func(t *testing.T) {
-		request := newGetScoreRequest("Floyd")
+		request := marshal.NewGetScoreRequest("Floyd")
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
@@ -61,7 +63,7 @@ func TestGETPlayers(t *testing.T) {
 	})
 
 	t.Run("returns 404 on missing players", func(t *testing.T) {
-		request := newGetScoreRequest("Apollo")
+		request := marshal.NewGetScoreRequest("Apollo")
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
@@ -119,7 +121,7 @@ func TestLeague(t *testing.T) {
 
 		assertStatus(t, response.Code, http.StatusOK)
 		assertLeague(t, got, wantedLeague)
-		assertContentType(t, response, jsonContentType)
+		assertContentType(t, response, JsonContentType)
 
 	})
 }
@@ -161,7 +163,7 @@ func NewLeagueRequest() *http.Request {
 	return req
 }
 
-func NewGetScoreRequest(name string) *http.Request {
+func marshal.NewGetScoreRequest(name string) *http.Request {
 	req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", name), nil)
 	return req
 }

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -9,22 +8,8 @@ import (
 	httpserver "learn.go/S02-build-an-app/c20-http-server/v5"
 )
 
-type StubPlayerStore struct {
-	scores   map[string]int
-	winCalls []string
-}
-
-func (s *StubPlayerStore) GetPlayerScore(name string) int {
-	score := s.scores[name]
-	return score
-}
-
-func (s *StubPlayerStore) RecordWin(name string) {
-	s.winCalls = append(s.winCalls, name)
-}
-
 func TestGETPlayers(t *testing.T) {
-	store := StubPlayerStore{
+	store := httpserver.StubPlayerStore{
 		map[string]int{
 			"Pepper": 20,
 			"Floyd":  10,
@@ -72,7 +57,7 @@ func TestGETPlayers(t *testing.T) {
 }
 
 func TestStoreWins(t *testing.T) {
-	store := StubPlayerStore{
+	store := httpserver.StubPlayerStore{
 		map[string]int{},
 		nil,
 	}
@@ -81,19 +66,19 @@ func TestStoreWins(t *testing.T) {
 	t.Run("it records wins on POST", func(t *testing.T) {
 		player := "Pepper"
 
-		request := NewPostWinRequest(player)
+		request := httpserver.NewPostWinRequest(player)
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
 
 		assertStatus(t, response.Code, http.StatusAccepted)
 
-		if len(store.winCalls) != 1 {
-			t.Fatalf("got %d calls to RecordWin want %d", len(store.winCalls), 1)
+		if len(store.WinningCalls) != 1 {
+			t.Fatalf("got %d calls to RecordWin want %d", len(store.WinningCalls), 1)
 		}
 
-		if store.winCalls[0] != player {
-			t.Errorf("did not store correct winner got %q want %q", store.winCalls[0], player)
+		if store.WinningCalls[0] != player {
+			t.Errorf("did not store correct winner got %q want %q", store.WinningCalls[0], player)
 		}
 	})
 }
@@ -103,16 +88,6 @@ func assertStatus(t testing.TB, got, want int) {
 	if got != want {
 		t.Errorf("did not get correct status, got %d, want %d", got, want)
 	}
-}
-
-func NewGetScoreRequest(name string) *http.Request {
-	req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", name), nil)
-	return req
-}
-
-func NewPostWinRequest(name string) *http.Request {
-	req, _ := http.NewRequest(http.MethodPost, fmt.Sprintf("/players/%s", name), nil)
-	return req
 }
 
 func assertResponseBody(t testing.TB, got, want string) {

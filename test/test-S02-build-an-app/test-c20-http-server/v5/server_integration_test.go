@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
 	httpserver "learn.go/S02-build-an-app/c20-http-server/v5"
 )
 
@@ -12,9 +13,9 @@ func TestRecordingWinsAndRetrievingThem(t *testing.T) {
 	server := httpserver.PlayerServer{store}
 	player := "Pepper"
 
-	server.ServeHTTP(httptest.NewRecorder(), NewPostWinRequest(player))
-	server.ServeHTTP(httptest.NewRecorder(), NewPostWinRequest(player))
-	server.ServeHTTP(httptest.NewRecorder(), NewPostWinRequest(player))
+	server.ServeHTTP(httptest.NewRecorder(), httpserver.NewPostWinRequest(player))
+	server.ServeHTTP(httptest.NewRecorder(), httpserver.NewPostWinRequest(player))
+	server.ServeHTTP(httptest.NewRecorder(), httpserver.NewPostWinRequest(player))
 
 	response := httptest.NewRecorder()
 	server.ServeHTTP(response, httpserver.NewGetScoreRequest(player))

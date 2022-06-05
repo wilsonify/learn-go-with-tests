@@ -6,6 +6,16 @@ import (
 	"strings"
 )
 
+func NewGetScoreRequest(name string) *http.Request {
+	req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", name), nil)
+	return req
+}
+
+func NewPostWinRequest(name string) *http.Request {
+	req, _ := http.NewRequest(http.MethodPost, fmt.Sprintf("/players/%s", name), nil)
+	return req
+}
+
 // PlayerStore stores score information about players.
 type PlayerStore interface {
 	GetPlayerScore(name string) int
@@ -14,7 +24,7 @@ type PlayerStore interface {
 
 // PlayerServer is a HTTP interface for player information.
 type PlayerServer struct {
-	store PlayerStore
+	StoreThePlayer PlayerStore
 }
 
 func (p *PlayerServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -29,7 +39,7 @@ func (p *PlayerServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func (p *PlayerServer) showScore(w http.ResponseWriter, player string) {
-	score := p.store.GetPlayerScore(player)
+	score := p.StoreThePlayer.GetPlayerScore(player)
 
 	if score == 0 {
 		w.WriteHeader(http.StatusNotFound)
@@ -39,6 +49,6 @@ func (p *PlayerServer) showScore(w http.ResponseWriter, player string) {
 }
 
 func (p *PlayerServer) processWin(w http.ResponseWriter, player string) {
-	p.store.RecordWin(player)
+	p.StoreThePlayer.RecordWin(player)
 	w.WriteHeader(http.StatusAccepted)
 }

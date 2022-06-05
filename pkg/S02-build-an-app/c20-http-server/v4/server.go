@@ -55,6 +55,10 @@ func (i *InMemoryPlayerStore) RecordWin(name string) {
 func (i *InMemoryPlayerStore) GetPlayerScore(name string) int {
 	return 123
 }
+func NewGetScoreRequest(name string) *http.Request {
+	req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", name), nil)
+	return req
+}
 
 func Mainly() {
 	server := &PlayerServer{&InMemoryPlayerStore{}}

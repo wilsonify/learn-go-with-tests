@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	marshal "learn.go/S02-build-an-app/c21-json/v2"
+
 )
 
 type StubPlayerStore struct {
@@ -29,10 +31,10 @@ func TestGETPlayers(t *testing.T) {
 		},
 		nil,
 	}
-	server := NewPlayerServer(&store)
+	server := marshal.NewPlayerServer(&store)
 
 	t.Run("returns Pepper's score", func(t *testing.T) {
-		request := newGetScoreRequest("Pepper")
+		request := marshal.NewGetScoreRequest("Pepper")
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
@@ -42,7 +44,7 @@ func TestGETPlayers(t *testing.T) {
 	})
 
 	t.Run("returns Floyd's score", func(t *testing.T) {
-		request := newGetScoreRequest("Floyd")
+		request := marshal.NewGetScoreRequest("Floyd")
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
@@ -52,7 +54,7 @@ func TestGETPlayers(t *testing.T) {
 	})
 
 	t.Run("returns 404 on missing players", func(t *testing.T) {
-		request := newGetScoreRequest("Apollo")
+		request := marshal.NewGetScoreRequest("Apollo")
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
@@ -66,7 +68,7 @@ func TestStoreWins(t *testing.T) {
 		map[string]int{},
 		nil,
 	}
-	server := NewPlayerServer(&store)
+	server := marshal.NewPlayerServer(&store)
 
 	t.Run("it records wins on POST", func(t *testing.T) {
 		player := "Pepper"
@@ -90,7 +92,7 @@ func TestStoreWins(t *testing.T) {
 
 func TestLeague(t *testing.T) {
 	store := StubPlayerStore{}
-	server := NewPlayerServer(&store)
+	server := marshal.NewPlayerServer(&store)
 
 	t.Run("it returns 200 on /league", func(t *testing.T) {
 		request, _ := http.NewRequest(http.MethodGet, "/league", nil)
@@ -109,15 +111,6 @@ func assertStatus(t testing.TB, got, want int) {
 	}
 }
 
-func NewGetScoreRequest(name string) *http.Request {
-	req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", name), nil)
-	return req
-}
-
-func NewPostWinRequest(name string) *http.Request {
-	req, _ := http.NewRequest(http.MethodPost, fmt.Sprintf("/players/%s", name), nil)
-	return req
-}
 
 func assertResponseBody(t testing.TB, got, want string) {
 	t.Helper()

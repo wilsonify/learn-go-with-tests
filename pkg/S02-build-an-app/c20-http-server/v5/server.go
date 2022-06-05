@@ -16,7 +16,7 @@ type PlayerStore interface {
 
 // PlayerServer is a HTTP interface for player information.
 type PlayerServer struct {
-	store PlayerStore
+	StoreThePlayer PlayerStore
 }
 
 func (p *PlayerServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -30,7 +30,7 @@ func (p *PlayerServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func (p *PlayerServer) showScore(w http.ResponseWriter, player string) {
-	score := p.store.GetPlayerScore(player)
+	score := p.StoreThePlayer.GetPlayerScore(player)
 
 	if score == 0 {
 		w.WriteHeader(http.StatusNotFound)
@@ -40,7 +40,7 @@ func (p *PlayerServer) showScore(w http.ResponseWriter, player string) {
 }
 
 func (p *PlayerServer) processWin(w http.ResponseWriter, player string) {
-	p.store.RecordWin(player)
+	p.StoreThePlayer.RecordWin(player)
 	w.WriteHeader(http.StatusAccepted)
 }
 
@@ -71,6 +71,30 @@ func (i *InMemoryPlayerStore) GetPlayerScore(name string) int {
 	i.lock.RLock()
 	defer i.lock.RUnlock()
 	return i.store[name]
+}
+
+func NewGetScoreRequest(name string) *http.Request {
+	req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", name), nil)
+	return req
+}
+
+func NewPostWinRequest(name string) *http.Request {
+	req, _ := http.NewRequest(http.MethodPost, fmt.Sprintf("/players/%s", name), nil)
+	return req
+}
+
+type StubPlayerStore struct {
+	Scores   map[string]int
+	WinningCalls []string
+}
+
+func (s *StubPlayerStore) GetPlayerScore(name string) int {
+	score := s.Scores[name]
+	return score
+}
+
+func (s *StubPlayerStore) RecordWin(name string) {
+	s.WinningCalls = append(s.WinningCalls, name)
 }
 
 func Main() {

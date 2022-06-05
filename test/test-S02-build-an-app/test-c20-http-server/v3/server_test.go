@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
 	httpserver "learn.go/S02-build-an-app/c20-http-server/v3"
 )
 
@@ -24,7 +24,7 @@ func TestGETPlayers(t *testing.T) {
 			"Floyd":  10,
 		},
 	}
-	server := &PlayerServer{&store}
+	server := &httpserver.PlayerServer{&store}
 
 	tests := []struct {
 		name               string
@@ -53,7 +53,7 @@ func TestGETPlayers(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			request := newGetScoreRequest(tt.player)
+			request := httpserver.NewGetScoreRequest(tt.player)
 			response := httptest.NewRecorder()
 
 			server.ServeHTTP(response, request)
@@ -68,7 +68,7 @@ func TestStoreWins(t *testing.T) {
 	store := StubPlayerStore{
 		map[string]int{},
 	}
-	server := &PlayerServer{&store}
+	server := &httpserver.PlayerServer{&store}
 
 	t.Run("it returns accepted on POST", func(t *testing.T) {
 		request, _ := http.NewRequest(http.MethodPost, "/players/Pepper", nil)
@@ -85,11 +85,6 @@ func assertStatus(t testing.TB, got, want int) {
 	if got != want {
 		t.Errorf("did not get correct status, got %d, want %d", got, want)
 	}
-}
-
-func NewGetScoreRequest(name string) *http.Request {
-	req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", name), nil)
-	return req
 }
 
 func assertResponseBody(t testing.TB, got, want string) {

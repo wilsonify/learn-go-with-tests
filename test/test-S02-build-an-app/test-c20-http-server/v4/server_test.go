@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
 	httpserver "learn.go/S02-build-an-app/c20-http-server/v4"
 )
 
@@ -30,7 +31,7 @@ func TestGETPlayers(t *testing.T) {
 		},
 		nil,
 	}
-	server := &PlayerServer{&store}
+	server := &httpserver.PlayerServer{&store}
 
 	tests := []struct {
 		name               string
@@ -59,7 +60,7 @@ func TestGETPlayers(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			request := newGetScoreRequest(tt.player)
+			request := httpserver.NewGetScoreRequest(tt.player)
 			response := httptest.NewRecorder()
 
 			server.ServeHTTP(response, request)
@@ -102,11 +103,6 @@ func assertStatus(t testing.TB, got, want int) {
 	if got != want {
 		t.Errorf("did not get correct status, got %d, want %d", got, want)
 	}
-}
-
-func NewGetScoreRequest(name string) *http.Request {
-	req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("/players/%s", name), nil)
-	return req
 }
 
 func assertResponseBody(t testing.TB, got, want string) {

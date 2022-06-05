@@ -5,7 +5,7 @@ import (
 	"io"
 	"testing"
 
-	blogrenderer "learn.go/S01-fundamentals/c18-templating-blogrenderer/blogrenderer"
+	blogrenderer "learn.go/S01-fundamentals/c18-templating/v1"
 
 	approvals "github.com/approvals/go-approval-tests"
 )

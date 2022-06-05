@@ -32,7 +32,7 @@ type PlayerServer struct {
 	game     Game
 }
 
-const jsonContentType = "application/json"
+const JsonContentType = "application/json"
 const htmlTemplatePath = "game.html"
 
 // NewPlayerServer creates a PlayerServer with routing configured.
@@ -81,7 +81,7 @@ func (p *PlayerServer) playGame(w http.ResponseWriter, r *http.Request) {
 }
 
 func (p *PlayerServer) leagueHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("content-type", jsonContentType)
+	w.Header().Set("content-type", JsonContentType)
 	json.NewEncoder(w).Encode(p.store.GetLeague())
 }
 
