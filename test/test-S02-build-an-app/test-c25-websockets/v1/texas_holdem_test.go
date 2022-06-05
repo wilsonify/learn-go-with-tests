@@ -5,11 +5,13 @@ import (
 
 	"testing"
 	"time"
+
+	poker "learn.go/S02-build-an-app/c25-websockets/v1"
 )
 
 func TestGame_Start(t *testing.T) {
 	t.Run("schedules alerts on game start for 5 players", func(t *testing.T) {
-		blindAlerter := &poker.SpyBlindAlerter{}
+		blindAlerter := &SpyBlindAlerter{}
 		game := poker.NewTexasHoldem(blindAlerter, dummyPlayerStore)
 
 		game.Start(5)
@@ -32,12 +34,12 @@ func TestGame_Start(t *testing.T) {
 	})
 
 	t.Run("schedules alerts on game start for 7 players", func(t *testing.T) {
-		blindAlerter := &poker.SpyBlindAlerter{}
+		blindAlerter := &SpyBlindAlerter{}
 		game := poker.NewTexasHoldem(blindAlerter, dummyPlayerStore)
 
 		game.Start(7)
 
-		cases := []poker.ScheduledAlert{
+		cases := []ScheduledAlert{
 			{At: 0 * time.Second, Amount: 100},
 			{At: 12 * time.Minute, Amount: 200},
 			{At: 24 * time.Minute, Amount: 300},
@@ -58,7 +60,7 @@ func TestGame_Finish(t *testing.T) {
 	poker.AssertPlayerWin(t, store, winner)
 }
 
-func checkSchedulingCases(cases []poker.ScheduledAlert, t *testing.T, blindAlerter *poker.SpyBlindAlerter) {
+func checkSchedulingCases(cases []ScheduledAlert, t *testing.T, blindAlerter *SpyBlindAlerter) {
 	for i, want := range cases {
 		t.Run(fmt.Sprint(want), func(t *testing.T) {
 
