@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
-	marshal "learn.go/S02-build-an-app/c21-json/v2"
 
+	marshal "learn.go/S02-build-an-app/c21-json/v2"
 )
 
 type StubPlayerStore struct {
@@ -73,7 +72,7 @@ func TestStoreWins(t *testing.T) {
 	t.Run("it records wins on POST", func(t *testing.T) {
 		player := "Pepper"
 
-		request := NewPostWinRequest(player)
+		request := marshal.NewPostWinRequest(player)
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
@@ -110,7 +109,6 @@ func assertStatus(t testing.TB, got, want int) {
 		t.Errorf("did not get correct status, got %d, want %d", got, want)
 	}
 }
-
 
 func assertResponseBody(t testing.TB, got, want string) {
 	t.Helper()

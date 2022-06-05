@@ -1,4 +1,4 @@
-package poker
+package poker_test
 
 import (
 	"fmt"
@@ -7,6 +7,8 @@ import (
 	"net/http/httptest"
 	"reflect"
 	"testing"
+	poker "learn.go/S02-build-an-app/c23-command-line/v1"
+
 )
 
 type StubPlayerStore struct {

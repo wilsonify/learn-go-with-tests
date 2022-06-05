@@ -76,7 +76,7 @@ func TestStoreWins(t *testing.T) {
 		map[string]int{},
 		nil,
 	}
-	server := &PlayerServer{&store}
+	server := &httpserver.PlayerServer{&store}
 
 	t.Run("it records wins on POST", func(t *testing.T) {
 		player := "Pepper"

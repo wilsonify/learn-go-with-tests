@@ -3,7 +3,7 @@ package generics_test
 import (
 	"testing"
 
-	generics "learn.go/S01-fundamentals/c19-generics"
+	generics "learn.go/S01-fundamentals/c19-generics/v1"
 )
 
 func TestAssertFunctions(t *testing.T) {
