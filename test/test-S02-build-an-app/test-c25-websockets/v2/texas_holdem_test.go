@@ -15,7 +15,7 @@ func TestGame_Start(t *testing.T) {
 
 		game.Start(5, ioutil.Discard)
 
-		cases := []poker.ScheduledAlert{
+		cases := []ScheduledAlert{
 			{At: 0 * time.Second, Amount: 100},
 			{At: 10 * time.Minute, Amount: 200},
 			{At: 20 * time.Minute, Amount: 300},
@@ -59,7 +59,7 @@ func TestGame_Finish(t *testing.T) {
 	poker.AssertPlayerWin(t, store, winner)
 }
 
-func checkSchedulingCases(cases []poker.ScheduledAlert, t *testing.T, blindAlerter *SpyBlindAlerter) {
+func checkSchedulingCases(cases []ScheduledAlert, t *testing.T, blindAlerter *SpyBlindAlerter) {
 	for i, want := range cases {
 		t.Run(fmt.Sprint(want), func(t *testing.T) {
 

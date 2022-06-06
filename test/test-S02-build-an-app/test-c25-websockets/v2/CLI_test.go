@@ -135,7 +135,7 @@ func assertMessagesSentToUser(t testing.TB, stdout *bytes.Buffer, messages ...st
 	}
 }
 
-func assertScheduledAlert(t testing.TB, got, want poker.ScheduledAlert) {
+func assertScheduledAlert(t testing.TB, got, want ScheduledAlert) {
 	t.Helper()
 	if got != want {
 		t.Errorf("got %+v, want %+v", got, want)

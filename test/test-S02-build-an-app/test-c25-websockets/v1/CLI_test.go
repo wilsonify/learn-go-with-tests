@@ -9,6 +9,17 @@ import (
 	poker "learn.go/S02-build-an-app/c25-websockets/v1"
 )
 
+type StubPlayerStore struct {
+	Scores   map[string]int
+	WinCalls []string
+	League   []poker.Player
+}
+
+func (s *StubPlayerStore) GetPlayerScore(name string) int {
+	score := s.Scores[name]
+	return score
+}
+
 var dummyBlindAlerter = &SpyBlindAlerter{}
 var dummyPlayerStore = &StubPlayerStore{}
 var dummyStdIn = &bytes.Buffer{}

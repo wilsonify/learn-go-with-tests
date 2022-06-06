@@ -8,6 +8,23 @@ import (
 
 	poker "learn.go/S02-build-an-app/c25-websockets/v1"
 )
+type ScheduledAlert struct {
+	at     time.Duration
+	amount int
+}
+
+func (s ScheduledAlert) String() string {
+	return fmt.Sprintf("%d chips at %v", s.amount, s.at)
+}
+
+type SpyBlindAlerter struct {
+	alerts []ScheduledAlert
+}
+
+func (s *SpyBlindAlerter) ScheduleAlertAt(at time.Duration, amount int) {
+	s.alerts = append(s.alerts, ScheduledAlert{at, amount})
+}
+
 
 func TestGame_Start(t *testing.T) {
 	t.Run("schedules alerts on game start for 5 players", func(t *testing.T) {
@@ -16,7 +33,7 @@ func TestGame_Start(t *testing.T) {
 
 		game.Start(5)
 
-		cases := []poker.ScheduledAlert{
+		cases := []ScheduledAlert{
 			{At: 0 * time.Second, Amount: 100},
 			{At: 10 * time.Minute, Amount: 200},
 			{At: 20 * time.Minute, Amount: 300},

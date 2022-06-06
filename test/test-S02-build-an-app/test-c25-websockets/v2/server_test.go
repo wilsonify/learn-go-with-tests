@@ -36,7 +36,7 @@ func TestGETPlayers(t *testing.T) {
 	server := mustMakePlayerServer(t, &store, dummyGame)
 
 	t.Run("returns Pepper's score", func(t *testing.T) {
-		request := newGetScoreRequest("Pepper")
+		request := NewGetScoreRequest("Pepper")
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
@@ -46,7 +46,7 @@ func TestGETPlayers(t *testing.T) {
 	})
 
 	t.Run("returns Floyd's score", func(t *testing.T) {
-		request := newGetScoreRequest("Floyd")
+		request := NewGetScoreRequest("Floyd")
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
@@ -56,7 +56,7 @@ func TestGETPlayers(t *testing.T) {
 	})
 
 	t.Run("returns 404 on missing players", func(t *testing.T) {
-		request := newGetScoreRequest("Apollo")
+		request := NewGetScoreRequest("Apollo")
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
@@ -96,7 +96,7 @@ func TestLeague(t *testing.T) {
 		store := poker.StubPlayerStore{League: wantedLeague}
 		server := mustMakePlayerServer(t, &store, dummyGame)
 
-		request := newLeagueRequest()
+		request := NewLeagueRequest()
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
@@ -114,7 +114,7 @@ func TestGame(t *testing.T) {
 	t.Run("GET /game returns 200", func(t *testing.T) {
 		server := mustMakePlayerServer(t, &poker.StubPlayerStore{}, dummyGame)
 
-		request := newGameRequest()
+		request := NewGameRequest()
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)

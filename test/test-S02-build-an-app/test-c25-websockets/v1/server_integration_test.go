@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
-	poker "learn.go/S02-build-an-app/c25-websockets/v1"
 
+	poker "learn.go/S02-build-an-app/c25-websockets/v1"
 )
 
 func TestRecordingWinsAndRetrievingThem(t *testing.T) {
@@ -24,7 +24,7 @@ func TestRecordingWinsAndRetrievingThem(t *testing.T) {
 
 	t.Run("get score", func(t *testing.T) {
 		response := httptest.NewRecorder()
-		server.ServeHTTP(response, newGetScoreRequest(player))
+		server.ServeHTTP(response, NewGetScoreRequest(player))
 		assertStatus(t, response, http.StatusOK)
 
 		assertResponseBody(t, response.Body.String(), "3")
@@ -32,11 +32,11 @@ func TestRecordingWinsAndRetrievingThem(t *testing.T) {
 
 	t.Run("get League", func(t *testing.T) {
 		response := httptest.NewRecorder()
-		server.ServeHTTP(response, newLeagueRequest())
+		server.ServeHTTP(response, NewLeagueRequest())
 		assertStatus(t, response, http.StatusOK)
 
 		got := getLeagueFromResponse(t, response.Body)
-		want := []Player{
+		want := []poker.Player{
 			{"Pepper", 3},
 		}
 		assertLeague(t, got, want)
