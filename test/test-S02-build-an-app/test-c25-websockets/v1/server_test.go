@@ -208,16 +208,3 @@ func assertResponseBody(t testing.TB, got, want string) {
 		t.Errorf("response body is wrong, got %q want %q", got, want)
 	}
 }
-
-// AssertPlayerWin allows you to spy on the store's calls to RecordWin.
-func AssertPlayerWin(t testing.TB, store *StubPlayerStore, winner string) {
-	t.Helper()
-
-	if len(store.WinCalls) != 1 {
-		t.Fatalf("got %d calls to RecordWin want %d", len(store.WinCalls), 1)
-	}
-
-	if store.WinCalls[0] != winner {
-		t.Errorf("did not store correct winner got %q want %q", store.WinCalls[0], winner)
-	}
-}

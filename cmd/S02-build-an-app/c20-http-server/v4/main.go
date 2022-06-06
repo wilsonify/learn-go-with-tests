@@ -3,6 +3,8 @@ package httpserver
 import (
 	"log"
 	"net/http"
+
+	httpserver "learn.go/S02-build-an-app/c20-http-server/v4"
 )
 
 // InMemoryPlayerStore collects data about players in memory.
@@ -18,6 +20,6 @@ func (i *InMemoryPlayerStore) GetPlayerScore(name string) int {
 }
 
 func main() {
-	server := &PlayerServer{&InMemoryPlayerStore{}}
+	server := &httpserver.PlayerServer{&InMemoryPlayerStore{}}
 	log.Fatal(http.ListenAndServe(":5000", server))
 }

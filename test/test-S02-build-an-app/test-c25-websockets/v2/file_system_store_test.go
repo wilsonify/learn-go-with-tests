@@ -4,6 +4,7 @@ import (
 	"io/ioutil"
 	"os"
 	"testing"
+	poker "learn.go/S02-build-an-app/c25-websockets/v2"
 )
 
 func CreateTempFile(t testing.TB, initialData string) (*os.File, func()) {

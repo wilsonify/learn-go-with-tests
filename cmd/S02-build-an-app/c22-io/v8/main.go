@@ -4,6 +4,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+	inputoutput "learn.go/S02-build-an-app/c22-io/v8"
+
 )
 
 const dbFileName = "game.db.json"
@@ -15,13 +17,13 @@ func main() {
 		log.Fatalf("problem opening %s %v", dbFileName, err)
 	}
 
-	store, err := NewFileSystemPlayerStore(db)
+	store, err := inputoutput.NewFileSystemPlayerStore(db)
 
 	if err != nil {
 		log.Fatalf("problem creating file system player store, %v ", err)
 	}
 
-	server := NewPlayerServer(store)
+	server := inputoutput.NewPlayerServer(store)
 
 	log.Fatal(http.ListenAndServe(":5000", server))
 }

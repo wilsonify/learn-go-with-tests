@@ -4,20 +4,22 @@ import (
 	"fmt"
 	"log"
 	"os"
+		poker "learn.go/S02-build-an-app/c24-time/v3"
 )
+
 
 const dbFileName = "game.db.json"
 
 func main() {
-	store, close, err := FileSystemPlayerStoreFromFile(dbFileName)
+	store, close, err := poker.FileSystemPlayerStoreFromFile(dbFileName)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer close()
 
-	game := NewTexasHoldem(BlindAlerterFunc(StdOutAlerter), store)
-	cli := NewCLI(os.Stdin, os.Stdout, game)
+	game := poker.NewTexasHoldem(poker.BlindAlerterFunc(poker.StdOutAlerter), store)
+	cli := poker.NewCLI(os.Stdin, os.Stdout, game)
 
 	fmt.Println("Let's play poker")
 	fmt.Println("Type {Name} wins to record a win")

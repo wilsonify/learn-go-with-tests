@@ -4,6 +4,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+	poker "learn.go/S02-build-an-app/c25-websockets/v2"
+
 )
 
 func main_webserver() {
@@ -13,15 +15,15 @@ func main_webserver() {
 		log.Fatalf("problem opening %s %v", dbFileName, err)
 	}
 
-	store, err := NewFileSystemPlayerStore(db)
+	store, err := poker.NewFileSystemPlayerStore(db)
 
 	if err != nil {
 		log.Fatalf("problem creating file system player store, %v ", err)
 	}
 
-	game := NewTexasHoldem(BlindAlerterFunc(Alerter), store)
+	game := poker.NewTexasHoldem(poker.BlindAlerterFunc(poker.Alerter), store)
 
-	server, err := NewPlayerServer(store, game)
+	server, err := poker.NewPlayerServer(store, game)
 
 	if err != nil {
 		log.Fatalf("problem creating player server %v", err)

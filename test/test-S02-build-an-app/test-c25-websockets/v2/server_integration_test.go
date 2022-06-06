@@ -4,12 +4,13 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	poker "learn.go/S02-build-an-app/c25-websockets/v2"
 )
 
 func TestRecordingWinsAndRetrievingThem(t *testing.T) {
 	database, cleanDatabase := CreateTempFile(t, `[]`)
 	defer cleanDatabase()
-	store, err := NewFileSystemPlayerStore(database)
+	store, err := poker.NewFileSystemPlayerStore(database)
 
 	assertNoError(t, err)
 

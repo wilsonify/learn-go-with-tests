@@ -3,6 +3,7 @@ package poker_test
 import (
 	"io/ioutil"
 	"testing"
+	poker "learn.go/S02-build-an-app/c25-websockets/v2"
 )
 
 func TestTape_Write(t *testing.T) {
