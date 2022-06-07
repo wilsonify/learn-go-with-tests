@@ -5,7 +5,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	httphandler "learn.go/s03-q-and-a/c29-http-handlers-revisited/v1"
+	httphandler "learn.go/S03-q-and-a/c29-http-handlers-revisited/v1"
 )
 
 func TestTeapotHandler(t *testing.T) {

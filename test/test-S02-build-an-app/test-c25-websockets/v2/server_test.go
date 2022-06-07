@@ -28,7 +28,7 @@ func mustMakePlayerServer(t *testing.T, store poker.PlayerStore, game poker.Game
 }
 
 func TestGETPlayers(t *testing.T) {
-	store := poker.StubPlayerStore{
+	store := StubPlayerStore{
 		Scores: map[string]int{
 			"Pepper": 20,
 			"Floyd":  10,
@@ -67,7 +67,7 @@ func TestGETPlayers(t *testing.T) {
 }
 
 func TestStoreWins(t *testing.T) {
-	store := poker.StubPlayerStore{
+	store := StubPlayerStore{
 		Scores: map[string]int{},
 	}
 	server := mustMakePlayerServer(t, &store, dummyGame)
@@ -81,7 +81,7 @@ func TestStoreWins(t *testing.T) {
 		server.ServeHTTP(response, request)
 
 		assertStatus(t, response, http.StatusAccepted)
-		poker.AssertPlayerWin(t, &store, player)
+		AssertPlayerWin(t, &store, player)
 	})
 }
 
@@ -94,7 +94,7 @@ func TestLeague(t *testing.T) {
 			{Name: "Tiest", Wins: 14},
 		}
 
-		store := poker.StubPlayerStore{League: wantedLeague}
+		store := StubPlayerStore{League: wantedLeague}
 		server := mustMakePlayerServer(t, &store, dummyGame)
 
 		request := NewLeagueRequest()
@@ -113,7 +113,7 @@ func TestLeague(t *testing.T) {
 
 func TestGame(t *testing.T) {
 	t.Run("GET /game returns 200", func(t *testing.T) {
-		server := mustMakePlayerServer(t, &poker.StubPlayerStore{}, dummyGame)
+		server := mustMakePlayerServer(t, &StubPlayerStore{}, dummyGame)
 
 		request := NewGameRequest()
 		response := httptest.NewRecorder()

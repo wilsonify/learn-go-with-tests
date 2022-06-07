@@ -1,17 +1,14 @@
-package osexec
+package osexec_test
 
 import (
-	"bytes"
-	"encoding/xml"
-	"io"
-	"io/ioutil"
-	"os/exec"
 	"strings"
 	"testing"
+
+	osexec "learn.go/S03-q-and-a/c26-os-exec/v1"
 )
 
 func TestGetDataIntegration(t *testing.T) {
-	got := GetData(getXMLFromCommand())
+	got := osexec.GetData(osexec.GetXMLFromCommand())
 	want := "HAPPY NEW YEAR!"
 
 	if got != want {
@@ -25,7 +22,7 @@ func TestGetData(t *testing.T) {
     <message>Cats are the best animal</message>
 </payload>`)
 
-	got := GetData(input)
+	got := osexec.GetData(input)
 	want := "CATS ARE THE BEST ANIMAL"
 
 	if got != want {

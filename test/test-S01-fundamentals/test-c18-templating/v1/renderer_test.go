@@ -1,18 +1,17 @@
-package blogrenderer_test
+package blogrendering_test
 
 import (
 	"bytes"
 	"io"
 	"testing"
 
-	blogrenderer "learn.go/S01-fundamentals/c18-templating/v1"
-
 	approvals "github.com/approvals/go-approval-tests"
+	blogrendering "learn.go/S01-fundamentals/c18-templating/v1"
 )
 
 func TestRender(t *testing.T) {
 	var (
-		aPost = blogrenderer.Post{
+		aPost = blogrendering.Post{
 			Title: "hello world",
 			Body: `# First recipe!
 Welcome to my **amazing blog**. I am going to write about my family recipes, and make sure I write a long, irrelevant and boring story about my family before you get to the actual instructions.`,
@@ -21,7 +20,7 @@ Welcome to my **amazing blog**. I am going to write about my family recipes, and
 		}
 	)
 
-	postRenderer, err := blogrenderer.NewPostRenderer()
+	postRenderer, err := blogrendering.NewPostRenderer()
 
 	if err != nil {
 		t.Fatal(err)
@@ -39,7 +38,7 @@ Welcome to my **amazing blog**. I am going to write about my family recipes, and
 
 	t.Run("it renders an index of posts", func(t *testing.T) {
 		buf := bytes.Buffer{}
-		posts := []blogrenderer.Post{{Title: "Hello World"}, {Title: "Hello World 2"}}
+		posts := []blogrendering.Post{{Title: "Hello World"}, {Title: "Hello World 2"}}
 
 		if err := postRenderer.RenderIndex(&buf, posts); err != nil {
 			t.Fatal(err)
@@ -51,7 +50,7 @@ Welcome to my **amazing blog**. I am going to write about my family recipes, and
 
 func BenchmarkRender(b *testing.B) {
 	var (
-		aPost = blogrenderer.Post{
+		aPost = blogrendering.Post{
 			Title:       "hello world",
 			Body:        "This is a post",
 			Description: "This is a description",
@@ -59,7 +58,7 @@ func BenchmarkRender(b *testing.B) {
 		}
 	)
 
-	postRenderer, err := blogrenderer.NewPostRenderer()
+	postRenderer, err := blogrendering.NewPostRenderer()
 
 	if err != nil {
 		b.Fatal(err)

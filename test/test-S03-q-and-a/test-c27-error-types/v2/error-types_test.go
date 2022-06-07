@@ -2,11 +2,11 @@ package errortypes
 
 import (
 	"errors"
-	"fmt"
-	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	errortypes "learn.go/S03-q-and-a/c27-error-types/v2"
 )
 
 func TestDumbGetter(t *testing.T) {
@@ -18,15 +18,15 @@ func TestDumbGetter(t *testing.T) {
 		}))
 		defer svr.Close()
 
-		_, err := DumbGetter(svr.URL)
+		_, err := errortypes.DumbGetter(svr.URL)
 
 		if err == nil {
 			t.Fatal("expected an error")
 		}
 
-		var got BadStatusError
+		var got errortypes.BadStatusError
 		isBadStatusError := errors.As(err, &got)
-		want := BadStatusError{URL: svr.URL, Status: http.StatusTeapot}
+		want := errortypes.BadStatusError{URL: svr.URL, Status: http.StatusTeapot}
 
 		if !isBadStatusError {
 			t.Fatalf("was not a BadStatusError, got %T", err)

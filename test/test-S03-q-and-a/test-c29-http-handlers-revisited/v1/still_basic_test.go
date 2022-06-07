@@ -11,7 +11,7 @@ import (
 	"strings"
 	"testing"
 
-	httphandler "learn.go/s03/q-and-a/c29-http-handlers-revisited/v1"
+	httphandler "learn.go/S03-q-and-a/c29-http-handlers-revisited/v1"
 )
 
 type MockUserService struct {

@@ -8,4 +8,6 @@ require (
 	learn.go v0.0.0
 )
 
+require github.com/gomarkdown/markdown v0.0.0-20220603122033-8f3b341fef32 // indirect
+
 replace learn.go => ../pkg

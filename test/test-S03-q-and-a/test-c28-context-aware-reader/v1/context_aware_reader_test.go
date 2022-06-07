@@ -4,11 +4,13 @@ import (
 	"context"
 	"strings"
 	"testing"
+
+	cancelreader "learn.go/S03-q-and-a/c28-context-aware-reader/v1"
 )
 
 func TestContextAwareReader(t *testing.T) {
 	t.Run("behaves like a normal reader", func(t *testing.T) {
-		rdr := NewCancellableReader(context.Background(), strings.NewReader("123456"))
+		rdr := cancelreader.NewCancellableReader(context.Background(), strings.NewReader("123456"))
 		got := make([]byte, 3)
 		_, err := rdr.Read(got)
 
@@ -29,7 +31,7 @@ func TestContextAwareReader(t *testing.T) {
 
 	t.Run("stops reading when cancelled", func(t *testing.T) {
 		ctx, cancel := context.WithCancel(context.Background())
-		rdr := NewCancellableReader(ctx, strings.NewReader("123456"))
+		rdr := cancelreader.NewCancellableReader(ctx, strings.NewReader("123456"))
 		got := make([]byte, 3)
 		_, err := rdr.Read(got)
 
