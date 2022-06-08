@@ -5,7 +5,7 @@ import (
 	"io"
 )
 
-var postTemplate string = "<h1>{{.Title}}</h1><p>{{.Description}}</p>Tags: <ul>{{range .Tags}}"
+var postTemplate string = `<h1>{{.Title}}</h1><p>{{.Description}}</p>Tags: <ul>{{range .Tags}}<li>{{.}}<\li>{{end}}<\ul>`
 
 // if you're continuing from the read files chapter, you shouldn't redefine this
 type Post struct {

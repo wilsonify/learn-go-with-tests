@@ -93,3 +93,49 @@ as an <h1>.
 
 This feels like the smallest first step that can move us forward a bit.
 
+
+# Introducing templates
+
+Go has two templating packages text/template and html/template
+and they share the same interface. 
+
+What they both do is allow you to combine a template and some data to produce a string.
+
+What’s the difference with the HTML version? 
+
+Package template (html/template) implements data-driven templates for generating HTML output safe against code injection.
+
+It provides the same interface as package text/template and should be used instead of text/template whenever the output is HTML.
+
+The templating language is very similar to Mustache and allows you to dynamically generate content in a very clean fashion with a nice separation of concerns. 
+
+Compared to other templating languages you may have used, 
+it is very constrained or ”logic-less” as Mustache likes to say. 
+
+This is an important, and deliberate design decision. 
+
+Whilst we’re focusing on generating HTML here, 
+if your project is doing complex string concatenations and incantations, 
+you might want to reach for text/template to clean up your code.
+
+
+We create a new template with a name, 
+and then parse our template string. 
+
+We can then use the Execute method on it, passing in our data, 
+in this case the Post.
+
+The template will substitute things like {{.Description}} with the content of 
+p.Description. 
+
+Templates also give you some programming primitives like range to loop over values, 
+and if. 
+
+You can find more details in the text/template documentation.
+
+Importantly, our code is easier to read and has far less annoying error handling to contend with.
+
+Frequently people complain about the verbosity of error handling in Go, 
+but you might find you can find better ways to write your code so
+it’s less error-prone in the first place, like here.
+
