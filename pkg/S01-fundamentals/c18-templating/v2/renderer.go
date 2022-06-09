@@ -1,27 +1,55 @@
-package blogrenderer
+package blogrendering
 
 import (
+	"embed"
 	"html/template"
 	"io"
+
+	"github.com/gomarkdown/markdown"
+	"github.com/gomarkdown/markdown/parser"
 )
 
-var postTemplate string = "<h1>{{.Title}}</h1><p>{{.Description}}</p>Tags: <ul>{{range .Tags}}"
+var (
+	//go:embed "templates/*"
+	postTemplates embed.FS
+)
 
-// if you're continuing from the read files chapter, you shouldn't redefine this
-type Post struct {
-	Title       string
-	Description string
-	Body        string
-	Tags        []string
+// PostRenderer renders data into HTML
+type PostRenderer struct {
+	templ    *template.Template
+	mdParser *parser.Parser
 }
 
-func Render(w io.Writer, p Post) error {
-	templ, err := template.New("blog").Parse(postTemplate)
+// NewPostRenderer creates a new PostRenderer
+func NewPostRenderer() (*PostRenderer, error) {
+	templ, err := template.ParseFS(postTemplates, "templates/*.gohtml")
 	if err != nil {
-		return err
+		return nil, err
 	}
-	if err := templ.Execute(w, p); err != nil {
-		return err
-	}
-	return nil
+
+	extensions := parser.CommonExtensions | parser.AutoHeadingIDs
+	parser := parser.NewWithExtensions(extensions)
+
+	return &PostRenderer{templ: templ, mdParser: parser}, nil
+}
+
+// Render renders post into HTML
+func (r *PostRenderer) Render(w io.Writer, p Post) error {
+	return r.templ.ExecuteTemplate(w, "blog.gohtml", newPostVM(p, r))
+}
+
+// RenderIndex creates an HTML index page given a collection of posts
+func (r *PostRenderer) RenderIndex(w io.Writer, posts []Post) error {
+	return r.templ.ExecuteTemplate(w, "index.gohtml", posts)
+}
+
+type postViewModel struct {
+	Post
+	HTMLBody template.HTML
+}
+
+func newPostVM(p Post, r *PostRenderer) postViewModel {
+	vm := postViewModel{Post: p}
+	vm.HTMLBody = template.HTML(markdown.ToHTML([]byte(p.Body), r.mdParser, nil))
+	return vm
 }
