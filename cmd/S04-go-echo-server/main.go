@@ -1,7 +1,7 @@
 package main
 
 import (
-	"learn.go/S04-go-echo-server/handlers"
+	"learn.go/S04-go-echo-server/v1/handlers"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"

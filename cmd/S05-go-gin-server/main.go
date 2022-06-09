@@ -12,7 +12,7 @@ package main
 import (
 	"log"
 
-	sw "learn.go/S05-go-gin-server/go"
+	sw "learn.go/S05-go-gin-server/v1"
 )
 
 func main() {

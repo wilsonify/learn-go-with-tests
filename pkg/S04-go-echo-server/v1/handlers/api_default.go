@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	models "learn.go/S04-go-echo-server/models"
+	models "learn.go/S04-go-echo-server/v1/models"
 
 	echo "github.com/labstack/echo/v4"
 )

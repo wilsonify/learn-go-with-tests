@@ -13,7 +13,7 @@ import (
 	"log"
 	"net/http"
 
-	openapi "learn.go/S06-go-server/go"
+	openapi "learn.go/S06-go-server/v1"
 )
 
 func main() {
