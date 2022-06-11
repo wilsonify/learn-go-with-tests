@@ -20,7 +20,7 @@ func Mainly() {
 	rand.Seed(44111342)
 
 	// Load in the iris dataset
-	iris, err := base.ParseCSVToInstances("../../datasets/iris_headers.csv", true)
+	iris, err := base.ParseCSVToInstances("..//datasets/iris_headers.csv", true)
 	if err != nil {
 		panic(err)
 	}
