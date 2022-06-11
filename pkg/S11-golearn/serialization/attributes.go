@@ -9,7 +9,7 @@ import (
 	"github.com/sjwhitworth/golearn/base"
 )
 
-func main() {
+func Mainly() {
 
 	// Load in the iris dataset
 	iris, err := base.ParseCSVToInstances("../datasets/iris_headers.csv", true)

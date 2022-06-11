@@ -8,7 +8,7 @@ import (
 	"github.com/sjwhitworth/golearn/knn"
 )
 
-func main() {
+func Mainly() {
 	rawData, err := base.ParseCSVToInstances("../datasets/iris_headers.csv", true)
 	if err != nil {
 		panic(err)

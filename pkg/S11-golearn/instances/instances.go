@@ -8,7 +8,7 @@ import (
 	"github.com/sjwhitworth/golearn/base"
 )
 
-func main() {
+func Mainly() {
 
 	// Instances can be read using ParseCsvToInstances
 	rawData, err := base.ParseCSVToInstances("../datasets/iris_headers.csv", true)

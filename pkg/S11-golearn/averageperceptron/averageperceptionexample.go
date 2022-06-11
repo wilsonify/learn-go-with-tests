@@ -9,7 +9,7 @@ import (
 	perceptron "github.com/sjwhitworth/golearn/perceptron"
 )
 
-func main() {
+func Mainly() {
 
 	rand.Seed(4402201)
 

@@ -9,7 +9,7 @@ import (
 	"github.com/sjwhitworth/golearn/trees"
 )
 
-func main() {
+func Mainly() {
 	/* Performance of CART Algorithm:
 
 		Training Time for Titanic Dataset ≈ 611 µs

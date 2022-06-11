@@ -12,7 +12,7 @@ import (
 	"github.com/sjwhitworth/golearn/evaluation"
 )
 
-func main() {
+func Mainly() {
 
 	var tree base.Classifier
 
