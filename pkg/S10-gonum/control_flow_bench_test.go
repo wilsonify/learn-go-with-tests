@@ -101,15 +101,9 @@ func (g *labeled) SetEdge(e graph.Edge) {
 	g.DirectedGraph.SetEdge(e)
 }
 
-type node struct {
-	graph.Node
-	name string
-	g    *labeled
-}
 
-func (n *node) SetDOTID(id string) {
-	n.name = id
-}
+
+
 
 func (n *node) SetAttribute(attr encoding.Attribute) error {
 	if attr.Key != "label" {

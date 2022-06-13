@@ -58,16 +58,8 @@ func (e *weightedEdge) SetAttribute(attr encoding.Attribute) error {
 	return err
 }
 
-// node is a DOT-aware node.
-type node struct {
-	graph.Node
-	dotID string
-}
 
-// SetDOTID sets the DOT ID of the node.
-func (n *node) SetDOTID(id string) { n.dotID = id }
 
-func (n *node) String() string { return n.dotID }
 
 const ug = `
 graph {

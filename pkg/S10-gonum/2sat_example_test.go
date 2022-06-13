@@ -166,14 +166,6 @@ unknown:
 	return state, true
 }
 
-type node struct {
-	id   int64
-	name string
-}
-
-func (n node) ID() int64     { return n.id }
-func (n node) negated() node { return node{-n.id, n.name} }
-
 func ExampleTarjanSCC_twoSAT() {
 	for i, s := range systems {
 		state, ok := twoSat(strings.NewReader(s))

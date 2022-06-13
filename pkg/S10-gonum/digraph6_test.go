@@ -316,7 +316,3 @@ func (i implicitCycle) From(id int64) graph.Nodes {
 }
 func (i implicitCycle) HasEdgeBetween(xid, yid int64) bool { return false }
 func (i implicitCycle) Edge(xid, yid int64) graph.Edge     { return nil }
-
-type node int32
-
-func (n node) ID() int64 { return int64(n) }

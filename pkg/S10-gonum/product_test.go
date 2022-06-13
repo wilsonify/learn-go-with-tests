@@ -5,7 +5,6 @@
 package gonum_examples
 
 import (
-	"fmt"
 	"testing"
 
 	"golang.org/x/exp/rand"
@@ -165,21 +164,6 @@ func TestProduct(t *testing.T) {
 			t.Errorf("unexpected result from product chain dimensions: %+v", dimensions)
 		}
 	}
-}
-
-// node is a subexpression node.
-type node struct {
-	dims
-	left, right *node
-}
-
-func (n *node) String() string {
-	if n.left == nil || n.right == nil {
-		rows, cols := n.shape()
-		return fmt.Sprintf("[%d×%d]", rows, cols)
-	}
-	rows, cols := n.shape()
-	return fmt.Sprintf("(%s * %s):[%d×%d]", n.left, n.right, rows, cols)
 }
 
 // shape returns the dimensions of the result of the subexpression.
